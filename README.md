@@ -11,4 +11,4 @@ Created for the 2024 Wolfjam hosted by Wolfjaw Studio
 - Kai Gidwani
 - Katie Hellmann
 - McKenzie Lam
-- Leah TOrregiano
+- Leah Torregiano
