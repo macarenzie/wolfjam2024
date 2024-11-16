@@ -55,7 +55,7 @@ public class PlayerManager : MonoBehaviour
         // Draw the vehicle at that new position
         transform.position = objectPosition;
 
-        // TODO: edge of road logic
+        // edge of road logic
         if (objectPosition.x > roadWidth)
         {
             objectPosition.x = roadWidth;
