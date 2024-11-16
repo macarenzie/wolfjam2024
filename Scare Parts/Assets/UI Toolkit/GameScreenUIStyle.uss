@@ -1,9 +1,0 @@
-.healthBar {
-    bottom: -85%;
-    align-self: center;
-    width: 5%;
-    rotate: -90deg;
-    right: -8%;
-    height: 1%;
-    opacity: 0.8;
-}
