@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camera = GetComponent<Camera>();
+        camera = Camera.main;
         camHeight = camera.orthographicSize;
         camWidth = camHeight * camera.aspect;
     }

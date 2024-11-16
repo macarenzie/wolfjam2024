@@ -424,7 +424,7 @@ MonoBehaviour:
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1336106174}
 --- !u!114 &5550392107891649472 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1891997846907894171, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
