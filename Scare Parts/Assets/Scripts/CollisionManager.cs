@@ -12,6 +12,8 @@ public class CollisionManager : MonoBehaviour
     [SerializeField] private BulletManager bulletManager;
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private Camera cam;
+    [SerializeField] private Sprite capturedSpirit;
+    [SerializeField] private Sprite capturedCryptid;
     private float camHeight;
 
     public List<GameObject> Enemies
@@ -60,7 +62,16 @@ public class CollisionManager : MonoBehaviour
                     // turn off hitbox
                     obstacles[i].GetComponent<Obstacle>().WasHit = true;
 
-                    // TODO: lower health
+                    // lower health
+                    switch (obstacles[i].GetComponent<Obstacle>().Type)
+                    {
+                        case ObstacleType.Rock:
+                            playerManager.ResourceChange(true, -15f);
+                            break;
+                        default:
+                            playerManager.ResourceChange(true, -10f);
+                            break;
+                    }
 
                 }
                 // if the obstacle is a puddle
@@ -84,7 +95,16 @@ public class CollisionManager : MonoBehaviour
                 // if the enemy is not caught
                 if (!enemies[i].GetComponent<Enemy>().IsCaught)
                 {
-                    // TODO: lower health
+                    // lower health
+                    switch (enemies[i].GetComponent<Enemy>().Type)
+                    {
+                        case EnemyType.Cryptid:
+                            playerManager.ResourceChange(true, -10f);
+                            break;
+                        default:
+                            playerManager.ResourceChange(true, -5f);
+                            break;
+                    }
 
                     Destroy(enemies[i]);
                     enemies.RemoveAt(i);
@@ -96,7 +116,16 @@ public class CollisionManager : MonoBehaviour
                 // if the enemy is caught
                 else
                 {
-                    // TODO: add gas/health
+                    // add gas/health
+                    switch (enemies[i].GetComponent<Enemy>().Type)
+                    {
+                        case EnemyType.Cryptid:
+                            playerManager.ResourceChange(true, 10f);
+                            break;
+                        default:
+                            playerManager.ResourceChange(false, 10f);
+                            break;
+                    }
 
                     Destroy(enemies[i]);
                     enemies.RemoveAt(i);
@@ -129,8 +158,17 @@ public class CollisionManager : MonoBehaviour
                     if ((bulletManager.Type == GunType.Capture && enemies[i].GetComponent<Enemy>().Type == EnemyType.Spirit) ||
                         (bulletManager.Type == GunType.Kill && enemies[i].GetComponent<Enemy>().Type == EnemyType.Cryptid))
                     {
-                        // capture enemy, TODO: change sprites
+                        // capture enemy, change sprites
                         enemies[i].GetComponent<Enemy>().IsCaught = true;
+                        switch (enemies[i].GetComponent<Enemy>().Type)
+                        {
+                            case EnemyType.Spirit:
+                                enemies[i].GetComponent<SpriteRenderer>().sprite = capturedSpirit;
+                                break;
+                            default:
+                                enemies[i].GetComponent<SpriteRenderer>().sprite = capturedCryptid;
+                                break;
+                        }
                     }
 
                     // destroy the bullet that collided
