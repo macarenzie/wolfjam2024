@@ -1,13 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Name: Player Manager
+/// Purpose: Handles everything related to the player
+/// Author(s): Leah Torregiano, McKenzie Lam
+/// </summary>
 public class PlayerManager : MonoBehaviour
 {
     // fields
     public int Health = 100;
-    public int Gas = 100;
+    public float Gas = 100;
     public bool IsSlipping = false;
 
     private Vector3 objectPosition;         // Initialized in Start() via transform
@@ -25,7 +31,6 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +40,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        #region MOVEMENT
         if (IsSlipping)
         {
             return;
@@ -58,6 +64,14 @@ public class PlayerManager : MonoBehaviour
         {
             objectPosition.x = -roadWidth;
         }
+        #endregion
+
+        #region RESOURCES
+        // decrease gas over time
+        Gas -= Time.deltaTime * 1;
+        Debug.Log(Gas);
+
+        #endregion
     }
 
     // The method that gets called to handle any player movement input
