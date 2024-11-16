@@ -12,11 +12,16 @@ public class BulletManager : MonoBehaviour
 {
     // fields
     public GunType Type = GunType.Capture;
+    public GameObject Gun;
     [SerializeField] private GameObject player;
     public List<GameObject> bullets;
     [SerializeField] private GameObject bullet;
     public float speed = 6.0f;
     private InputActionReference fireAction;
+    [SerializeField] private Sprite spiritGun;
+    [SerializeField] private Sprite cryptidGun;
+    [SerializeField] private Sprite spiritBullet;
+    [SerializeField] private Sprite cryptidBullet;
 
 
     // Start is called before the first frame update
@@ -45,5 +50,18 @@ public class BulletManager : MonoBehaviour
     public void OnSwitch(InputAction.CallbackContext context)
     {
         // switch gun types
+        switch (Type)
+        {
+            case GunType.Kill:
+                Gun.GetComponent<SpriteRenderer>().sprite = spiritGun;
+                bullet.GetComponent<SpriteRenderer>().sprite = spiritBullet;
+                Type = GunType.Capture;
+                break;
+            default:
+                Gun.GetComponent<SpriteRenderer>().sprite = cryptidGun;
+                bullet.GetComponent<SpriteRenderer>().sprite = cryptidBullet;
+                Type = GunType.Kill;
+                break;
+        }
     }
 }
