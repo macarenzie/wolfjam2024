@@ -12,7 +12,7 @@ using UnityEngine.InputSystem;
 public class PlayerManager : MonoBehaviour
 {
     // fields
-    public int Health = 100;
+    public float Health = 100;
     public float Gas = 100;
     public bool IsSlipping = false;
 
@@ -79,5 +79,22 @@ public class PlayerManager : MonoBehaviour
     {
         // Get latest value for input from Input System for direction
         Direction = context.ReadValue<Vector2>();
+    }
+
+    /// <summary>
+    /// Change a specific resource by a certain number
+    /// </summary>
+    /// <param name="isHealth">determines what resource is affected</param>
+    /// <param name="num">amount to change resource by</param>
+    public void ResourceChange(bool isHealth, float num)
+    {
+        if(isHealth)
+        {
+            Health += num;
+        }
+        else
+        {
+            Gas += num;
+        }
     }
 }
