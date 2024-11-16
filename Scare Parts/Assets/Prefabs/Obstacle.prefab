@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: -5975347922310435463}
   - component: {fileID: -8684016554708225197}
   m_Layer: 0
-  m_Name: Puddle
-  m_TagString: Obstacle
+  m_Name: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.49803925, g: 0.83921576, b: 0.9921569, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,7 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ca6280a99b2904f9fc4df474bc6409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 2
 --- !u!114 &-8684016554708225197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,5 +110,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d36ec0ff0de3d5498e15fe5e7672756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementFactor: 2
-  transform: {fileID: 6468754376345277941}
+  movementFactor: 0

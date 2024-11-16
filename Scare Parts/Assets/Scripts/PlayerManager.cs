@@ -1,20 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// Name: Player Manager
-/// Purpose: Handles everything related to the player
-/// Author(s): Leah Torregiano, McKenzie Lam
-/// </summary>
 public class PlayerManager : MonoBehaviour
 {
     // fields
-    public float Health = 100;
-    public float Gas = 100;
-    public bool IsSlipping = false;
+    public int Health = 100;
+    public int Gas = 100;
 
     private Vector3 objectPosition;         // Initialized in Start() via transform
     [SerializeField] private float speed = 5f;      // Set in the inspector
@@ -31,6 +24,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,12 +34,6 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        #region MOVEMENT
-        if (IsSlipping)
-        {
-            return;
-        }
-
         // Velocity is direction * speed * deltaTime 
         Vector3 velocity = direction * speed * Time.deltaTime;
 
@@ -55,7 +43,7 @@ public class PlayerManager : MonoBehaviour
         // Draw the vehicle at that new position
         transform.position = objectPosition;
 
-        // edge of road logic
+        // TODO: edge of road logic
         if (objectPosition.x > roadWidth)
         {
             objectPosition.x = roadWidth;
@@ -64,14 +52,6 @@ public class PlayerManager : MonoBehaviour
         {
             objectPosition.x = -roadWidth;
         }
-        #endregion
-
-        #region RESOURCES
-        // decrease gas over time
-        Gas -= Time.deltaTime * 1;
-        Debug.Log(Gas);
-
-        #endregion
     }
 
     // The method that gets called to handle any player movement input
@@ -79,22 +59,5 @@ public class PlayerManager : MonoBehaviour
     {
         // Get latest value for input from Input System for direction
         Direction = context.ReadValue<Vector2>();
-    }
-
-    /// <summary>
-    /// Change a specific resource by a certain number
-    /// </summary>
-    /// <param name="isHealth">determines what resource is affected</param>
-    /// <param name="num">amount to change resource by</param>
-    public void ResourceChange(bool isHealth, float num)
-    {
-        if(isHealth)
-        {
-            Health += num;
-        }
-        else
-        {
-            Gas += num;
-        }
     }
 }

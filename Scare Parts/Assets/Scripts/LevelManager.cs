@@ -13,7 +13,6 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if health is 0, end game
-        // if gas is 0, end game
+        
     }
 }
