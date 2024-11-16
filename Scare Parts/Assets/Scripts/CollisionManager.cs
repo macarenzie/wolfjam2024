@@ -57,11 +57,10 @@ public class CollisionManager : MonoBehaviour
                 // if the obstacle is a rock or log
                 if (obstacles[i].GetComponent<Obstacle>().Type != ObstacleType.Puddle)
                 {
-                    // lower health & turn off hitbox
-                    // Destroy(playerManager.playerLives[playerManager.playerLives.Count - 1]);
-                    // playerManager.playerLives.RemoveAt(playerManager.playerLives.Count - 1);
+                    // turn off hitbox
+                    obstacles[i].GetComponent<Obstacle>().WasHit = true;
 
-                    // if health is 0, end game
+                    // TODO: lower health
 
                 }
                 // if the obstacle is a puddle
@@ -74,17 +73,6 @@ public class CollisionManager : MonoBehaviour
             {
                 player.GetComponent<PlayerManager>().IsSlipping = false;
             }
-
-            //destroy enemy if off bottom of screen
-            if (enemies[i].GetComponent<SpriteRenderer>().bounds.max.y < -camHeight)
-            {
-                Destroy(enemies[i]);
-                enemies.RemoveAt(i);
-                if (i != 0)
-                {
-                    i--;
-                }
-            }
         }
 
         // AABB
@@ -96,11 +84,7 @@ public class CollisionManager : MonoBehaviour
                 // if the enemy is not caught
                 if (!enemies[i].GetComponent<Enemy>().IsCaught)
                 {
-                    // lower health
-                    // Destroy(playerManager.playerLives[playerManager.playerLives.Count - 1]);
-                    // playerManager.playerLives.RemoveAt(playerManager.playerLives.Count - 1);
-
-                    // if health is 0, end game
+                    // TODO: lower health
 
                     Destroy(enemies[i]);
                     enemies.RemoveAt(i);
@@ -112,7 +96,7 @@ public class CollisionManager : MonoBehaviour
                 // if the enemy is caught
                 else
                 {
-                    // add gas/health
+                    // TODO: add gas/health
 
                     Destroy(enemies[i]);
                     enemies.RemoveAt(i);
@@ -123,7 +107,7 @@ public class CollisionManager : MonoBehaviour
                 }
             }
 
-            //destroy enemy if off bottom of screen
+            // destroy enemy if off bottom of screen
             if (enemies[i].GetComponent<SpriteRenderer>().bounds.max.y < -camHeight)
             {
                 Destroy(enemies[i]);
@@ -142,20 +126,11 @@ public class CollisionManager : MonoBehaviour
                 // Collision occuring
                 if (AABBCollision(bulletManager.bullets[j], enemies[i]))
                 {
-                    if (bulletManager.Type == GunType.Capture)
+                    if ((bulletManager.Type == GunType.Capture && enemies[i].GetComponent<Enemy>().Type == EnemyType.Spirit) ||
+                        (bulletManager.Type == GunType.Kill && enemies[i].GetComponent<Enemy>().Type == EnemyType.Cryptid))
                     {
-                        // capture enemy
+                        // capture enemy, TODO: change sprites
                         enemies[i].GetComponent<Enemy>().IsCaught = true;
-                    }
-                    else if (bulletManager.Type == GunType.Kill)
-                    {
-                        // kill enemy
-                        Destroy(enemies[i]);
-                        enemies.RemoveAt(i);
-                        if (i != 0)
-                        {
-                            i--; 
-                        }
                     }
 
                     // destroy the bullet that collided
