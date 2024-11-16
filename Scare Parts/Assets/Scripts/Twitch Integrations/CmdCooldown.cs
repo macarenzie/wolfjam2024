@@ -11,6 +11,7 @@ using UnityEngine;
 
 public class CmdCooldown : MonoBehaviour
 {
+    [SerializeField] BulletManager bulletManager;
     private float shootCooldownTime;
     private float switchCooldownTime;
     private float testCooldownTime;
@@ -36,7 +37,7 @@ public class CmdCooldown : MonoBehaviour
     private void Update()
     {
         //this is redundant, would refactor later but just to ensure it works:
-        print(canUseTest);
+    
         if (shootCooldownTime > 0)
         {
             shootCooldownTime -= Time.deltaTime;
@@ -98,16 +99,27 @@ public class CmdCooldown : MonoBehaviour
         //check the command
         else if (pMessage.Contains("!shoot") && canUseShoot)
         {
+            bulletManager.OnFire();
             shootCooldownTime = _timeTilNextShoot;
             canUseShoot = false;
+        }
+        else if (pMessage.Contains("!shoot") && !canUseShoot)
+        {
+            print("cant use");
         }
         //check the command
         else if (pMessage.Contains("!switch") && canUseSwitch)
         {
+            bulletManager.OnSwitch();
             switchCooldownTime = _timeTilNextSwitch;
             canUseSwitch = false;
         }
-       
+        else if (pMessage.Contains("!switch") && !canUseSwitch)
+        {
+            print("cant use");
+        }
+
+
 
     }
 

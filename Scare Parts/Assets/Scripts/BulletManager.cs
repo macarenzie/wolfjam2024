@@ -22,7 +22,7 @@ public class BulletManager : MonoBehaviour
     [SerializeField] private Sprite cryptidGun;
     [SerializeField] private Sprite spiritBullet;
     [SerializeField] private Sprite cryptidBullet;
-    [SerializeField] private CmdCooldown cooldown;
+
 
 
     // Start is called before the first frame update
@@ -40,18 +40,19 @@ public class BulletManager : MonoBehaviour
         }
     }
 
-    public void OnFire(InputAction.CallbackContext context)
+    //InputAction.CallbackContext context
+    public void OnFire()
     {
-        if (context.performed && cooldown.CanShoot())
-        {
+       
+     
             bullets.Add(Instantiate(bullet, player.GetComponent<SpriteRenderer>().bounds.center, Quaternion.identity));
-        }
+       
     }
 
-    public void OnSwitch(InputAction.CallbackContext context)
+    //InputAction.CallbackContext context
+    public void OnSwitch()
     {
-        if (cooldown.CanSwitch())
-        {
+        
             // switch gun types
             switch (Type)
             {
@@ -67,5 +68,5 @@ public class BulletManager : MonoBehaviour
                     break;
             } 
         }
-    }
+    
 }

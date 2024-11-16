@@ -853,7 +853,6 @@ MonoBehaviour:
   cryptidGun: {fileID: 21300000, guid: 5525893100f95a3498f1b028455bea34, type: 3}
   spiritBullet: {fileID: 21300000, guid: ed47bcec99783ca4d8c84ca3b28d4f4e, type: 3}
   cryptidBullet: {fileID: 21300000, guid: 6ffbb861a66b1054296567f2822b2e19, type: 3}
-  cooldown: {fileID: 1932816014}
 --- !u!4 &1932816012
 Transform:
   m_ObjectHideFlags: 0
@@ -908,6 +907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca03ad721948454299e18b19b8cc6a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletManager: {fileID: 1932816011}
   _timeTilNextShoot: 5
   _timeTilNextSwitch: 5
   _timeTilNextTest: 1000

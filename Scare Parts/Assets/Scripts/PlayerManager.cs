@@ -69,7 +69,7 @@ public class PlayerManager : MonoBehaviour
         #region RESOURCES
         // decrease gas over time
         Gas -= Time.deltaTime * 1;
-        Debug.Log(Gas);
+        //Debug.Log(Gas);
 
         #endregion
     }
