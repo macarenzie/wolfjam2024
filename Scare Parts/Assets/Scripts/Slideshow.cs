@@ -11,6 +11,7 @@ public class Slideshow : MonoBehaviour
     private int currentImage;
 
     private string key;
+    [SerializeField] string sceneName;
 
     private UIDocument document;
     private Button button;
@@ -44,28 +45,6 @@ public class Slideshow : MonoBehaviour
         GUI.DrawTexture(imageRect, imageArray[currentImage]);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //pause the cutscene if escape is pressed
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            PauseCutScene();
-        }
-    }
-
-    private void PauseCutScene()
-    {
-        if (EditorApplication.isPlaying)
-        {
-            EditorApplication.isPlaying = false;
-        }
-        else
-        {
-            EditorApplication.isPlaying = true;
-        }
-    }
-
     /// <summary>
     /// move on to the next image in the sequence
     /// </summary>
@@ -78,14 +57,8 @@ public class Slideshow : MonoBehaviour
         else
         {
             //transition to next scene
-            LoadGame("airel - test scene");
-            Debug.Log("hello");
+            SceneManager.LoadScene(sceneName);
         }
-    }
-
-    private void LoadGame(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
     }
 
     private void OnDisable()
