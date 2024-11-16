@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     // fields
     public int Health = 100;
     public int Gas = 100;
+    public bool IsSlipping = false;
 
     private Vector3 objectPosition;         // Initialized in Start() via transform
     [SerializeField] private float speed = 5f;      // Set in the inspector
@@ -34,6 +35,11 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (IsSlipping)
+        {
+            return;
+        }
+
         // Velocity is direction * speed * deltaTime 
         Vector3 velocity = direction * speed * Time.deltaTime;
 

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
     // fields
     private List<GameObject> enemies;
+    private List<GameObject> obstacles;
     [SerializeField] private GameObject player;
     [SerializeField] private BulletManager bulletManager;
     [SerializeField] private PlayerManager playerManager;
@@ -24,16 +26,67 @@ public class CollisionManager : MonoBehaviour
         }
     }
 
+    public List<GameObject> Obstacles
+    {
+        get
+        {
+            return obstacles;
+        }
+        set
+        {
+            obstacles = value;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+        obstacles = new List<GameObject>(GameObject.FindGameObjectsWithTag("Obstacle"));
         camHeight = cam.orthographicSize;
     }
 
     // Update is called once per frame
     void Update()
     {
+        for (int i = 0; i < obstacles.Count; i++)
+        {
+            // Collision occuring
+            if (AABBCollision(player, obstacles[i]) && !obstacles[i].GetComponent<Obstacle>().WasHit)
+            {
+                // if the obstacle is a rock or log
+                if (obstacles[i].GetComponent<Obstacle>().Type != ObstacleType.Puddle)
+                {
+                    // lower health & turn off hitbox
+                    // Destroy(playerManager.playerLives[playerManager.playerLives.Count - 1]);
+                    // playerManager.playerLives.RemoveAt(playerManager.playerLives.Count - 1);
+
+                    // if health is 0, end game
+
+                }
+                // if the obstacle is a puddle
+                else
+                {
+                    player.GetComponent<PlayerManager>().IsSlipping = true;
+                }
+            }
+            else if(obstacles[i].GetComponent<Obstacle>().Type == ObstacleType.Puddle)
+            {
+                player.GetComponent<PlayerManager>().IsSlipping = false;
+            }
+
+            //destroy enemy if off bottom of screen
+            if (enemies[i].GetComponent<SpriteRenderer>().bounds.max.y < -camHeight)
+            {
+                Destroy(enemies[i]);
+                enemies.RemoveAt(i);
+                if (i != 0)
+                {
+                    i--;
+                }
+            }
+        }
+
         // AABB
         for (int i = 0; i < enemies.Count; i++)
         {
