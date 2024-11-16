@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 609767231}
   - component: {fileID: 609767230}
   - component: {fileID: 609767232}
+  - component: {fileID: 609767233}
   m_Layer: 0
   m_Name: TwitchManager
   m_TagString: Untagged
@@ -261,6 +262,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 609767232}
         m_TargetAssemblyTypeName: SampleEvent, Assembly-CSharp
+        m_MethodName: OnChatMessage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 609767233}
+        m_TargetAssemblyTypeName: CmdCooldown, Assembly-CSharp
         m_MethodName: OnChatMessage
         m_Mode: 0
         m_Arguments:
@@ -299,6 +312,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TextMeshProUGUI1: {fileID: 1426926971}
+  cooldownObj: {fileID: 609767233}
+--- !u!114 &609767233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609767229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca03ad721948454299e18b19b8cc6a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeTilNextShoot: 5
+  _timeTilNextSwitch: 5
+  _timeTilNextTest: 10
 --- !u!1 &1321511712
 GameObject:
   m_ObjectHideFlags: 0
