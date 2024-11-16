@@ -10,16 +10,18 @@ using UnityEngine;
 public class GameObjectMovement : MonoBehaviour
 {
     // fields
-    [SerializeField] private float movementFactor;
+    [SerializeField] private float movementFactor = 0.5f;
+
+    // movement fields
+    [SerializeField] private Transform transform;
 
     /// <summary>
     /// Move the object based on a specified movement and time
     /// </summary>
-    /// <param name="delta">time</param>
-    public void Move(float delta)
+    void Update()
     {
         Vector3 newPos = transform.localPosition;
-        newPos.y -= delta * movementFactor;
+        newPos.y -= Time.deltaTime * movementFactor;
 
         transform.localPosition = newPos;
     }

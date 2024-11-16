@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -10,9 +11,7 @@ public class PlayerManager : MonoBehaviour
 
     private Vector3 objectPosition;         // Initialized in Start() via transform
     [SerializeField] private float speed = 5f;      // Set in the inspector
-    private new Camera camera;
-    private float camHeight;
-    private float camWidth;
+    private int roadWidth = 4;
 
     // Direction object is facing, must be normalized
     private Vector3 direction;
@@ -29,42 +28,36 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camera = Camera.main;
-        camHeight = camera.orthographicSize;
-        camWidth = camHeight * camera.aspect;
+        objectPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
         // Velocity is direction * speed * deltaTime 
-        // (we don’t really even need the tmp variable)
         Vector3 velocity = direction * speed * Time.deltaTime;
 
         // New position is current position + velocity
         objectPosition += velocity;
 
-
-
         // Draw the vehicle at that new position
         transform.position = objectPosition;
 
-        // Extra logic to adjust for edge interaction
-        if (objectPosition.x > camWidth)
+        // TODO: edge of road logic
+        if (objectPosition.x > roadWidth)
         {
-            objectPosition.x = camWidth;
+            objectPosition.x = roadWidth;
         }
-        if (objectPosition.x < -camWidth)
+        if (objectPosition.x < -roadWidth)
         {
-            objectPosition.x = -camWidth;
+            objectPosition.x = -roadWidth;
         }
-        if (objectPosition.y > camHeight)
-        {
-            objectPosition.y = camHeight;
-        }
-        if (objectPosition.y < -camHeight)
-        {
-            objectPosition.y = -camHeight;
-        }
+    }
+
+    // The method that gets called to handle any player movement input
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        // Get latest value for input from Input System for direction
+        Direction = context.ReadValue<Vector2>();
     }
 }

@@ -10,7 +10,7 @@ public class CollisionManager : MonoBehaviour
     [SerializeField] private BulletManager bulletManager;
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private Camera cam;
-    private float camWidth;
+    private float camHeight;
 
     public List<GameObject> Enemies
     {
@@ -28,7 +28,7 @@ public class CollisionManager : MonoBehaviour
     void Start()
     {
         enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
-        camWidth = cam.orthographicSize * cam.aspect;
+        camHeight = cam.orthographicSize;
     }
 
     // Update is called once per frame
@@ -40,36 +40,74 @@ public class CollisionManager : MonoBehaviour
             // Collision occuring
             if (AABBCollision(player, enemies[i]))
             {
-                // lower health
-                // Destroy(playerManager.playerLives[playerManager.playerLives.Count - 1]);
-                // playerManager.playerLives.RemoveAt(playerManager.playerLives.Count - 1);
-
-                // if health is 0, end game
-
-                Destroy(enemies[i]);
-                enemies.RemoveAt(i);
-                if (i != 0)
+                // if the enemy is not caught
+                if (!enemies[i].GetComponent<Enemy>().IsCaught)
                 {
-                    i--;
+                    // lower health
+                    // Destroy(playerManager.playerLives[playerManager.playerLives.Count - 1]);
+                    // playerManager.playerLives.RemoveAt(playerManager.playerLives.Count - 1);
+
+                    // if health is 0, end game
+
+                    Destroy(enemies[i]);
+                    enemies.RemoveAt(i);
+                    if (i != 0)
+                    {
+                        i--;
+                    } 
                 }
-            }
-        }
-        
-        for (int i = 0; i < enemies.Count; i++)
-        {
-            for (int j = 0; j < bulletManager.bullets.Count; j++)
-            {
-                // Collision occuring
-                if (AABBCollision(bulletManager.bullets[j], enemies[i]))
+                // if the enemy is caught
+                else
                 {
-                    // capture enemy
-                    // enemies[i].IsCaught = true;
-                    Destroy(bulletManager.bullets[j]);
-                    bulletManager.bullets.RemoveAt(j);
+                    // add gas/health
+
+                    Destroy(enemies[i]);
+                    enemies.RemoveAt(i);
                     if (i != 0)
                     {
                         i--;
                     }
+                }
+            }
+
+            //destroy enemy if off bottom of screen
+            if (enemies[i].GetComponent<SpriteRenderer>().bounds.max.y < -camHeight)
+            {
+                Destroy(enemies[i]);
+                enemies.RemoveAt(i);
+                if (i != 0)
+                {
+                    i--; 
+                }
+            }
+        }
+        
+        for (int j = 0; j < bulletManager.bullets.Count; j++)
+        {
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                // Collision occuring
+                if (AABBCollision(bulletManager.bullets[j], enemies[i]))
+                {
+                    if (bulletManager.Type == GunType.Capture)
+                    {
+                        // capture enemy
+                        enemies[i].GetComponent<Enemy>().IsCaught = true;
+                    }
+                    else if (bulletManager.Type == GunType.Kill)
+                    {
+                        // kill enemy
+                        Destroy(enemies[i]);
+                        enemies.RemoveAt(i);
+                        if (i != 0)
+                        {
+                            i--; 
+                        }
+                    }
+
+                    // destroy the bullet that collided
+                    Destroy(bulletManager.bullets[j]);
+                    bulletManager.bullets.RemoveAt(j);
                     if (j != 0)
                     {
                         j--;
@@ -77,16 +115,14 @@ public class CollisionManager : MonoBehaviour
                 }
             }
 
-        }
-        for (int i = 0; i < enemies.Count; i++)
-        {
-            //destroy enemy if off screen
-            if (enemies[i].GetComponent<SpriteRenderer>().bounds.max.x < -camWidth)
+            //destroy bullet if off top of screen
+            if (bulletManager.bullets[j].GetComponent<SpriteRenderer>().bounds.min.y > camHeight)
             {
-                Destroy(enemies[i]);
-                enemies.RemoveAt(i);
-                i--;
+                Destroy(bulletManager.bullets[j]);
+                bulletManager.bullets.RemoveAt(j);
+                j--;
             }
+
         }
     }
 

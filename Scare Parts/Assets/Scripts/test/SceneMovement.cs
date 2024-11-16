@@ -42,9 +42,5 @@ public class BackgroundMovement : MonoBehaviour
 
     private void Move(float delta)
     {
-        foreach(GameObjectMovement obj in gameObjects)
-        {
-            obj.Move(delta);
-        }
     }
 }

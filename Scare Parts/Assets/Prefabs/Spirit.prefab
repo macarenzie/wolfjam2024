@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 159491704126684254}
   - component: {fileID: 8047077052978337022}
   - component: {fileID: 1457825757423106816}
+  - component: {fileID: 5462412155514050586}
   m_Layer: 0
   m_Name: Spirit
   m_TagString: Enemy
@@ -99,3 +100,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   IsCaught: 0
+  transform: {fileID: 159491704126684254}
+  downSpeed: 0.2
+--- !u!114 &5462412155514050586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984666010903929847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d36ec0ff0de3d5498e15fe5e7672756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementFactor: 0
