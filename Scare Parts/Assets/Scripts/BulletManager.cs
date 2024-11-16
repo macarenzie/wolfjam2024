@@ -22,6 +22,7 @@ public class BulletManager : MonoBehaviour
     [SerializeField] private Sprite cryptidGun;
     [SerializeField] private Sprite spiritBullet;
     [SerializeField] private Sprite cryptidBullet;
+    [SerializeField] private CmdCooldown cooldown;
 
 
     // Start is called before the first frame update
@@ -41,7 +42,7 @@ public class BulletManager : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && cooldown.CanShoot())
         {
             bullets.Add(Instantiate(bullet, player.GetComponent<SpriteRenderer>().bounds.center, Quaternion.identity));
         }
@@ -49,19 +50,22 @@ public class BulletManager : MonoBehaviour
 
     public void OnSwitch(InputAction.CallbackContext context)
     {
-        // switch gun types
-        switch (Type)
+        if (cooldown.CanSwitch())
         {
-            case GunType.Kill:
-                Gun.GetComponent<SpriteRenderer>().sprite = spiritGun;
-                bullet.GetComponent<SpriteRenderer>().sprite = spiritBullet;
-                Type = GunType.Capture;
-                break;
-            default:
-                Gun.GetComponent<SpriteRenderer>().sprite = cryptidGun;
-                bullet.GetComponent<SpriteRenderer>().sprite = cryptidBullet;
-                Type = GunType.Kill;
-                break;
+            // switch gun types
+            switch (Type)
+            {
+                case GunType.Kill:
+                    Gun.GetComponent<SpriteRenderer>().sprite = spiritGun;
+                    bullet.GetComponent<SpriteRenderer>().sprite = spiritBullet;
+                    Type = GunType.Capture;
+                    break;
+                default:
+                    Gun.GetComponent<SpriteRenderer>().sprite = cryptidGun;
+                    bullet.GetComponent<SpriteRenderer>().sprite = cryptidBullet;
+                    Type = GunType.Kill;
+                    break;
+            } 
         }
     }
 }
