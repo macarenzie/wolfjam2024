@@ -188,7 +188,6 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 8c6046760fd895d49841fae2c5de6c16, type: 3}
   - {fileID: 2800000, guid: fd6e4c63abe791e47adf653326d8691b, type: 3}
   - {fileID: 2800000, guid: 559e62bc805bc6a41be8b63c7dd765d9, type: 3}
-  sceneName: airel - test scene
 --- !u!1 &1968218962
 GameObject:
   m_ObjectHideFlags: 0
