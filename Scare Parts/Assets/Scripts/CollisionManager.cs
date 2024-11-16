@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
     // fields
     private List<GameObject> enemies;
+    private List<GameObject> obstacles;
     [SerializeField] private GameObject player;
     [SerializeField] private BulletManager bulletManager;
     [SerializeField] private PlayerManager playerManager;
@@ -24,16 +26,55 @@ public class CollisionManager : MonoBehaviour
         }
     }
 
+    public List<GameObject> Obstacles
+    {
+        get
+        {
+            return obstacles;
+        }
+        set
+        {
+            obstacles = value;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+        obstacles = new List<GameObject>(GameObject.FindGameObjectsWithTag("Obstacle"));
         camHeight = cam.orthographicSize;
     }
 
     // Update is called once per frame
     void Update()
     {
+        for (int i = 0; i < obstacles.Count; i++)
+        {
+            // Collision occuring
+            if (AABBCollision(player, obstacles[i]) && !obstacles[i].GetComponent<Obstacle>().WasHit)
+            {
+                // if the obstacle is a rock or log
+                if (obstacles[i].GetComponent<Obstacle>().Type != ObstacleType.Puddle)
+                {
+                    // turn off hitbox
+                    obstacles[i].GetComponent<Obstacle>().WasHit = true;
+
+                    // TODO: lower health
+
+                }
+                // if the obstacle is a puddle
+                else
+                {
+                    player.GetComponent<PlayerManager>().IsSlipping = true;
+                }
+            }
+            else if(obstacles[i].GetComponent<Obstacle>().Type == ObstacleType.Puddle)
+            {
+                player.GetComponent<PlayerManager>().IsSlipping = false;
+            }
+        }
+
         // AABB
         for (int i = 0; i < enemies.Count; i++)
         {
@@ -43,11 +84,7 @@ public class CollisionManager : MonoBehaviour
                 // if the enemy is not caught
                 if (!enemies[i].GetComponent<Enemy>().IsCaught)
                 {
-                    // lower health
-                    // Destroy(playerManager.playerLives[playerManager.playerLives.Count - 1]);
-                    // playerManager.playerLives.RemoveAt(playerManager.playerLives.Count - 1);
-
-                    // if health is 0, end game
+                    // TODO: lower health
 
                     Destroy(enemies[i]);
                     enemies.RemoveAt(i);
@@ -59,7 +96,7 @@ public class CollisionManager : MonoBehaviour
                 // if the enemy is caught
                 else
                 {
-                    // add gas/health
+                    // TODO: add gas/health
 
                     Destroy(enemies[i]);
                     enemies.RemoveAt(i);
@@ -70,7 +107,7 @@ public class CollisionManager : MonoBehaviour
                 }
             }
 
-            //destroy enemy if off bottom of screen
+            // destroy enemy if off bottom of screen
             if (enemies[i].GetComponent<SpriteRenderer>().bounds.max.y < -camHeight)
             {
                 Destroy(enemies[i]);
@@ -89,20 +126,11 @@ public class CollisionManager : MonoBehaviour
                 // Collision occuring
                 if (AABBCollision(bulletManager.bullets[j], enemies[i]))
                 {
-                    if (bulletManager.Type == GunType.Capture)
+                    if ((bulletManager.Type == GunType.Capture && enemies[i].GetComponent<Enemy>().Type == EnemyType.Spirit) ||
+                        (bulletManager.Type == GunType.Kill && enemies[i].GetComponent<Enemy>().Type == EnemyType.Cryptid))
                     {
-                        // capture enemy
+                        // capture enemy, TODO: change sprites
                         enemies[i].GetComponent<Enemy>().IsCaught = true;
-                    }
-                    else if (bulletManager.Type == GunType.Kill)
-                    {
-                        // kill enemy
-                        Destroy(enemies[i]);
-                        enemies.RemoveAt(i);
-                        if (i != 0)
-                        {
-                            i--; 
-                        }
                     }
 
                     // destroy the bullet that collided
