@@ -3,7 +3,13 @@ guid: 1415be4f0b9c07447810d4d778de4947
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - player: {instanceID: 0}
+  - bulletManager: {instanceID: 0}
+  - playerManager: {instanceID: 0}
+  - cam: {instanceID: 0}
+  - capturedSpirit: {fileID: 21300000, guid: f9969b6b864d24d4e9a8d1879972e007, type: 3}
+  - capturedCryptid: {fileID: 21300000, guid: 991f4837247d24348b2c3c0e34fc1c9c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
