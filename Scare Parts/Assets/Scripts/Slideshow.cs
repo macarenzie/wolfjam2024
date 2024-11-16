@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class Slideshow : MonoBehaviour
 {
@@ -10,6 +11,21 @@ public class Slideshow : MonoBehaviour
     private int currentImage;
 
     private string key;
+
+    private UIDocument document;
+    private Button button;
+
+    /// <summary>
+    /// setting up the button to switch the image
+    /// </summary>
+    private void Awake()
+    {
+        document = GetComponent<UIDocument>();
+
+        button = document.rootVisualElement.Q("NextButton") as Button;
+        button.RegisterCallback<ClickEvent>(NextImage);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +37,6 @@ public class Slideshow : MonoBehaviour
     /// </summary>
     void OnGUI()
     {
-
         int w = Screen.width, h = Screen.height;
 
         Rect imageRect = new Rect(0, 0, w, h);
@@ -39,7 +54,7 @@ public class Slideshow : MonoBehaviour
         }
     }
 
-    public void PauseCutScene()
+    private void PauseCutScene()
     {
         if (EditorApplication.isPlaying)
         {
@@ -54,20 +69,27 @@ public class Slideshow : MonoBehaviour
     /// <summary>
     /// move on to the next image in the sequence
     /// </summary>
-    public void NextImage()
+    private void NextImage(ClickEvent evt)
     {
-        currentImage++;
-    }
-
-    /// <summary>
-    /// when the cutscene is over, transition to the game scene
-    /// </summary>
-    public void EndCutScene()
-    {
-        if (currentImage >= imageArray.Length)
+        if (currentImage < imageArray.Length - 1)
+        {
+            currentImage++;
+        }
+        else
         {
             //transition to next scene
-            SceneManager.LoadScene("GameScene");
+            LoadGame("airel - test scene");
+            Debug.Log("hello");
         }
+    }
+
+    private void LoadGame(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    private void OnDisable()
+    {
+        button.UnregisterCallback<ClickEvent>(NextImage);
     }
 }
