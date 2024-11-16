@@ -35,6 +35,7 @@ public class CmdCooldown : MonoBehaviour
     }
     private void Update()
     {
+        //this is redundant, would refactor later but just to ensure it works:
         print(canUseTest);
         if (shootCooldownTime > 0)
         {

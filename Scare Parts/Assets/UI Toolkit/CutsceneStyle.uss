@@ -1,0 +1,11 @@
+.button {
+    align-self: flex-end;
+    width: 10%;
+    height: 7%;
+    font-size: 40px;
+    margin-left: 2%;
+    margin-right: 4%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    -unity-font-style: normal;
+}
