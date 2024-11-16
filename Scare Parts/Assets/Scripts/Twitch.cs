@@ -62,7 +62,9 @@ public class TwitchConnect : MonoBehaviour
                 string msg = message.Substring(splitPoint + 1);
 
                 OnChatMessage?.Invoke(chatter, msg);
+
             }
+
             print(message);
         }
     }
