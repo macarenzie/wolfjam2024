@@ -12,7 +12,8 @@ public enum ObstacleType
 public class Obstacle : MonoBehaviour
 {
     // fields
-    [SerializeField] public ObstacleType Type;
+    public ObstacleType Type;
+    public bool WasHit;
 
     // Start is called before the first frame update
     void Start()
