@@ -11,7 +11,6 @@ public class Slideshow : MonoBehaviour
     private int currentImage;
 
     private string key;
-    [SerializeField] string sceneName;
 
     private UIDocument document;
     private Button button;
@@ -57,7 +56,7 @@ public class Slideshow : MonoBehaviour
         else
         {
             //transition to next scene
-            SceneManager.LoadScene(sceneName);
+            SceneManager.LoadScene("airel - test scene");
         }
     }
 

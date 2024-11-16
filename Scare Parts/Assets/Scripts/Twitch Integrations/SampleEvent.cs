@@ -27,12 +27,12 @@ public class SampleEvent : MonoBehaviour
     public void OnChatMessage(string pChatter, string pMessage)
     {
         //check the command
-        if (pMessage.Contains("!cmd") && cooldownObj.CanTest())
+        if (pMessage.Contains("!shoot") && cooldownObj.CanShoot())
         {
             //change text
             m_TextMeshProUGUI1.text = pChatter + " sent a cmd, can use command? " + cooldownObj.CanTest();
         }
-        else if (pMessage.Contains("!cmd") && !cooldownObj.CanTest())
+        else if (pMessage.Contains("!shoot") && !cooldownObj.CanShoot())
         {
             m_TextMeshProUGUI1.text = pChatter + " sent a cmd, can use command? " + cooldownObj.CanTest();
         }
