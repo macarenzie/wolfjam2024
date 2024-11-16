@@ -1,0 +1,52 @@
+.HealthBar {
+    width: 250px;
+    rotate: -90deg;
+    scale: 1 4;
+}
+
+.FuelGaugeBackground {
+    background-color: rgb(183, 183, 183);
+    background-image: url('project://database/Assets/TempSprites/alpha-wolf.jpg?fileID=2800000&guid=991f4837247d24348b2c3c0e34fc1c9c&type=3#alpha-wolf');
+    width: 250px;
+    height: 250px;
+    opacity: 1;
+    align-self: center;
+    margin-left: 10%;
+}
+
+.FuelGaugeStick {
+    background-image: url('project://database/Assets/TempSprites/barbie.jpg?fileID=2800000&guid=f9969b6b864d24d4e9a8d1879972e007&type=3#barbie');
+    height: 5%;
+    width: 90%;
+    align-self: flex-end;
+    rotate: 90deg;
+    transform-origin: right;
+    margin-right: 5%;
+    top: 95%;
+}
+
+.UIArea {
+    background-color: rgba(77, 77, 77, 0);
+    width: 33.33%;
+    height: 33.33%;
+    flex-direction: row-reverse;
+    align-self: flex-end;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    justify-content: flex-start;
+}
+
+.GridArea {
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    background-color: rgba(96, 96, 96, 0);
+    width: 33.33333%;
+    height: 33.33333%;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+}
