@@ -271,11 +271,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6175a357e9a662542b2096fc243fc431, type: 3}
---- !u!4 &1074288381 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6468754376345277941, guid: 5ff4b7eb6b7d09f4cb7eb643196f899e, type: 3}
-  m_PrefabInstance: {fileID: 6764774508672695678}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1336106172
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,14 +669,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8684016554708225197, guid: 5ff4b7eb6b7d09f4cb7eb643196f899e, type: 3}
-      propertyPath: transform
-      value: 
-      objectReference: {fileID: 1074288381}
-    - target: {fileID: -8684016554708225197, guid: 5ff4b7eb6b7d09f4cb7eb643196f899e, type: 3}
-      propertyPath: movementFactor
-      value: 0.7
-      objectReference: {fileID: 0}
     - target: {fileID: 1874481181141177184, guid: 5ff4b7eb6b7d09f4cb7eb643196f899e, type: 3}
       propertyPath: m_Name
       value: Obstacle
