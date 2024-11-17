@@ -1004,7 +1004,7 @@ MonoBehaviour:
   bulletManager: {fileID: 1932816011}
   playerManager: {fileID: 5550392107891649472}
   cam: {fileID: 1336106174}
-  capturedSpirit: {fileID: 21300000, guid: ac6ae082d54162b46ae6ebe2458dab22, type: 3}
+  capturedSpirit: {fileID: 21300000, guid: b7a81212fdd795f4b8dcd20131663a21, type: 3}
   capturedCryptid: {fileID: 21300000, guid: c26eaca63ae4ed849bf31bfd71996ea2, type: 3}
   isHit: 0
 --- !u!1001 &6764774508672695678
