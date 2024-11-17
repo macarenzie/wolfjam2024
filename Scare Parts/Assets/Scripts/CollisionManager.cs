@@ -15,7 +15,7 @@ public class CollisionManager : MonoBehaviour
     [SerializeField] private Sprite capturedSpirit;
     [SerializeField] private Sprite capturedCryptid;
     private float camHeight;
-
+    public bool isHit = false;
     public List<GameObject> Enemies
     {
         get
@@ -51,6 +51,8 @@ public class CollisionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        isHit = false;
         for (int i = 0; i < obstacles.Count; i++)
         {
             // Collision occuring
@@ -67,9 +69,16 @@ public class CollisionManager : MonoBehaviour
                     {
                         case ObstacleType.Rock:
                             playerManager.ResourceChange(true, -15f);
+                            print("hit");
+                            isHit = true;
+                           
+
                             break;
                         default:
                             playerManager.ResourceChange(true, -10f);
+                            isHit = true;
+                           
+
                             break;
                     }
 
@@ -78,6 +87,9 @@ public class CollisionManager : MonoBehaviour
                 else
                 {
                     player.GetComponent<PlayerManager>().IsSlipping = true;
+                    isHit =true;
+                   
+                    print("hit");
                 }
             }
             else if(obstacles[i].GetComponent<Obstacle>().Type == ObstacleType.Puddle)
@@ -100,9 +112,14 @@ public class CollisionManager : MonoBehaviour
                     {
                         case EnemyType.Cryptid:
                             playerManager.ResourceChange(true, -10f);
+                            isHit = true;
+                            print("hit");
                             break;
                         default:
                             playerManager.ResourceChange(true, -5f);
+                            isHit = true;
+                            print("hit");
+
                             break;
                     }
 
@@ -167,6 +184,8 @@ public class CollisionManager : MonoBehaviour
                                 break;
                             default:
                                 enemies[i].GetComponent<SpriteRenderer>().sprite = capturedCryptid;
+                                enemies[i].GetComponent<Animation>().enabled = false;
+                                enemies[i].GetComponent<Animator>().enabled = false;
                                 break;
                         }
                     }
@@ -190,6 +209,7 @@ public class CollisionManager : MonoBehaviour
             }
 
         }
+        //isHit = false;
     }
 
     bool AABBCollision(GameObject move, GameObject stop)

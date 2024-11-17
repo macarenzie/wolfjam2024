@@ -5230,7 +5230,6 @@ GameObject:
   - component: {fileID: 1932816012}
   - component: {fileID: 1932816011}
   - component: {fileID: 1932816010}
-  - component: {fileID: 1932816009}
   - component: {fileID: 1932816014}
   - component: {fileID: 1932816013}
   m_Layer: 0
@@ -5240,24 +5239,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1932816009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1932816008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1415be4f0b9c07447810d4d778de4947, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 5550392107891649470}
-  bulletManager: {fileID: 1932816011}
-  playerManager: {fileID: 5550392107891649472}
-  cam: {fileID: 1336106174}
-  capturedSpirit: {fileID: 21300000, guid: ac6ae082d54162b46ae6ebe2458dab22, type: 3}
-  capturedCryptid: {fileID: 21300000, guid: c26eaca63ae4ed849bf31bfd71996ea2, type: 3}
 --- !u!114 &1932816010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5526,9 +5507,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1891997846907894171, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: collison
+      value: 
+      objectReference: {fileID: 5550392107891649474}
     - target: {fileID: 5468896539589195168, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: m_Camera
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5597,7 +5586,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5468896539589195168, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5550392107891649474}
   m_SourcePrefab: {fileID: 100100000, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
 --- !u!1 &5550392107891649470 stripped
 GameObject:
@@ -5615,6 +5607,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80951cbf8cf3e25489a830d1dfafe1fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5550392107891649474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5550392107891649470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1415be4f0b9c07447810d4d778de4947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 5550392107891649470}
+  bulletManager: {fileID: 1932816011}
+  playerManager: {fileID: 5550392107891649472}
+  cam: {fileID: 1336106174}
+  capturedSpirit: {fileID: 21300000, guid: b7a81212fdd795f4b8dcd20131663a21, type: 3}
+  capturedCryptid: {fileID: 21300000, guid: c26eaca63ae4ed849bf31bfd71996ea2, type: 3}
+  isHit: 0
 --- !u!1001 &6764774508672695678
 PrefabInstance:
   m_ObjectHideFlags: 0

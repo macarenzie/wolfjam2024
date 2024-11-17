@@ -1,28 +1,29 @@
 .titleLabel {
     align-self: center;
-    top: 10%;
+    top: 15%;
     font-size: 156px;
     -unity-font-style: bold;
 }
 
 .button {
-    width: 25%;
+    width: 40%;
     align-self: center;
     height: 10%;
-    top: 167px;
-    margin-left: 24px;
-    margin-right: 24px;
-    margin-top: 24px;
-    margin-bottom: 24px;
-    font-size: 60px;
+    top: 263px;
+    margin-left: 35px;
+    margin-right: 35px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    font-size: 71px;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
-    transition-duration: 0.35s;
 }
 
-.button:hover {
-    scale: 1.1 1.1;
-    -unity-background-image-tint-color: rgb(255, 181, 216);
+.subtitleLabel {
+    align-self: center;
+    font-size: 50px;
+    top: 208px;
+    -unity-text-align: upper-center;
 }
