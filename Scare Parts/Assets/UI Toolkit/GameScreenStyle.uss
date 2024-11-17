@@ -34,7 +34,7 @@
     align-items: center;
     position: absolute;
     bottom: 0;
-    justify-content: flex-start;
+    justify-content: flex-end;
 }
 
 .GridArea {
@@ -49,4 +49,14 @@
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
+}
+
+.label {
+    font-size: 39px;
+    position: absolute;
+    top: 295px;
+    -unity-text-align: upper-center;
+    -unity-font-style: normal;
+    background-color: rgb(77, 77, 77);
+    color: rgb(255, 255, 255);
 }
