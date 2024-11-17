@@ -167,6 +167,8 @@ public class CollisionManager : MonoBehaviour
                                 break;
                             default:
                                 enemies[i].GetComponent<SpriteRenderer>().sprite = capturedCryptid;
+                                enemies[i].GetComponent<Animation>().enabled = false;
+                                enemies[i].GetComponent<Animator>().enabled = false;
                                 break;
                         }
                     }
