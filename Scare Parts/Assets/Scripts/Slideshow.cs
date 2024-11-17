@@ -56,7 +56,7 @@ public class Slideshow : MonoBehaviour
         else
         {
             //transition to next scene
-            SceneManager.LoadScene("airel - test scene");
+            SceneManager.LoadScene("GameScene");
         }
     }
 

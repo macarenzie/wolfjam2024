@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
-public class UIButtons : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
     private UIDocument document;
-    private Button playAgainButton;
+    private Button startButton;
     private Button quitButton;
 
     /// <summary>
@@ -18,8 +18,8 @@ public class UIButtons : MonoBehaviour
         //get button references
         document = GetComponent<UIDocument>();
 
-        playAgainButton = document.rootVisualElement.Q("PlayAgainButton") as Button;
-        playAgainButton.RegisterCallback<ClickEvent>(LoadScene);
+        startButton = document.rootVisualElement.Q("StartButton") as Button;
+        startButton.RegisterCallback<ClickEvent>(LoadScene);
 
         quitButton = document.rootVisualElement.Q("QuitButton") as Button;
         quitButton.RegisterCallback<ClickEvent>(QuitGame);
@@ -32,7 +32,7 @@ public class UIButtons : MonoBehaviour
     private void LoadScene(ClickEvent evt)
     {
 
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Cutscene");
     }
 
     /// <summary>
@@ -47,8 +47,9 @@ public class UIButtons : MonoBehaviour
     //unregister the events
     private void OnDisable()
     {
-        playAgainButton.UnregisterCallback<ClickEvent>(LoadScene);
+        startButton.UnregisterCallback<ClickEvent>(LoadScene);
 
         quitButton.UnregisterCallback<ClickEvent>(QuitGame);
     }
 }
+
