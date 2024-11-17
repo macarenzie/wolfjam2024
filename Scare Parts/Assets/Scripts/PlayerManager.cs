@@ -117,6 +117,10 @@ public class PlayerManager : MonoBehaviour
         if(isHealth)
         {
             Health += num;
+            if(Health > 100)
+            {
+                Health = 100;
+            }
         }
         else
         {
