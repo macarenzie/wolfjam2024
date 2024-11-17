@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
-  IsCaught: 0
+  IsCaught: 1
 --- !u!114 &5462412155514050586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,5 +112,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d36ec0ff0de3d5498e15fe5e7672756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementFactor: 0.2
+  movementFactor: 5
   transform: {fileID: 159491704126684254}

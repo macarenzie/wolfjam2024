@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d36ec0ff0de3d5498e15fe5e7672756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementFactor: 0.5
+  movementFactor: 3
   transform: {fileID: 9052677217546804607}
 --- !u!111 &-8262535987771309486
 Animation:
