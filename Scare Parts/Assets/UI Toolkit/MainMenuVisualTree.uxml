@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=03c2a81ad6370d442b84d856c7d1d7a2&amp;type=3#MainMenuStyle" />
-    <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgb(131, 113, 159);">
-        <ui:Label tabindex="-1" text="Scare Parts" display-tooltip-when-elided="true" name="TitleLabel" class="titleLabel" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgb(131, 113, 159); justify-content: center; align-items: center;">
+        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; background-image: url(&apos;project://database/Assets/Sprites/title_.png?fileID=2800000&amp;guid=e91ca20992b6b044787616bf5348fffa&amp;type=3#title_&apos;); width: 1236px; height: 792px; top: -104px; left: 328px; justify-content: center; align-items: center; align-self: center;" />
         <ui:Button text="Start" display-tooltip-when-elided="true" name="StartButton" class="button" style="align-self: center;" />
         <ui:Button text="Options" display-tooltip-when-elided="true" name="OptionsButton" class="button" />
         <ui:Button text="Credits" display-tooltip-when-elided="true" name="CreditsButton" enable-rich-text="true" class="button" />
