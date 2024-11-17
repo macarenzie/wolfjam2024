@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Name: Player Manager
@@ -95,6 +96,10 @@ public class PlayerManager : MonoBehaviour
         #region RESOURCES
         // decrease gas over time
         Gas -= Time.deltaTime * 1;
+        if(Gas < 0)
+        {
+            SceneManager.LoadScene("LoseScene");
+        }
         //Debug.Log(Gas);
 
         #endregion
@@ -125,6 +130,11 @@ public class PlayerManager : MonoBehaviour
         else
         {
             Gas += num;
+        }
+
+        if (Gas < 0 || Health < 0)
+        {
+            SceneManager.LoadScene("LoseScene");
         }
     }
 }
