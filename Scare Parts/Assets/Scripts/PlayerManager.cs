@@ -19,6 +19,10 @@ public class PlayerManager : MonoBehaviour
     private Vector3 objectPosition;         // Initialized in Start() via transform
     [SerializeField] private float speed = 5f;      // Set in the inspector
     private int roadWidth = 4;
+    [SerializeField] private float redCooldown = 1;
+
+    public SpriteRenderer rend;
+    [SerializeField] private CollisionManager collison;
 
     // Direction object is facing, must be normalized
     private Vector3 direction;
@@ -34,12 +38,34 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rend = gameObject.GetComponent<SpriteRenderer>();
+
         objectPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (redCooldown > 0)
+        {
+            redCooldown -= Time.deltaTime;
+        }
+        if (redCooldown < 0)
+        {
+            redCooldown = 0;
+        }
+
+        if (collison.isHit)
+        {
+            redCooldown = 1;
+            rend.color = Color.red;
+
+        }
+        else if (redCooldown <= 0)
+        {
+            rend.color = Color.white;
+        }
+
         #region MOVEMENT
         if (IsSlipping)
         {
@@ -91,6 +117,10 @@ public class PlayerManager : MonoBehaviour
         if(isHealth)
         {
             Health += num;
+            if(Health > 100)
+            {
+                Health = 100;
+            }
         }
         else
         {
