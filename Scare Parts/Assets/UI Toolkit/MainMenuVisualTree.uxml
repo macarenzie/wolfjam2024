@@ -3,8 +3,8 @@
     <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgb(131, 113, 159); justify-content: center; align-items: center;">
         <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; background-image: url(&apos;project://database/Assets/Sprites/title_.png?fileID=2800000&amp;guid=e91ca20992b6b044787616bf5348fffa&amp;type=3#title_&apos;); width: 1236px; height: 792px; top: -104px; left: 328px; justify-content: center; align-items: center; align-self: center;" />
         <ui:Button text="Start" display-tooltip-when-elided="true" name="StartButton" class="button" style="align-self: center;" />
-        <ui:Button text="Options" display-tooltip-when-elided="true" name="OptionsButton" class="button" />
-        <ui:Button text="Credits" display-tooltip-when-elided="true" name="CreditsButton" enable-rich-text="true" class="button" />
-        <ui:Button text="Quit" display-tooltip-when-elided="true" name="Quit" class="button" />
+        <ui:Button text="Options" display-tooltip-when-elided="true" name="OptionsButton" class="button" style="display: none;" />
+        <ui:Button text="Credits" display-tooltip-when-elided="true" name="CreditsButton" enable-rich-text="true" class="button" style="display: none;" />
+        <ui:Button text="Quit" display-tooltip-when-elided="true" name="QuitButton" class="button" />
     </ui:VisualElement>
 </ui:UXML>

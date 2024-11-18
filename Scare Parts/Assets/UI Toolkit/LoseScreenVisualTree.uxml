@@ -4,6 +4,7 @@
         <ui:Label tabindex="-1" text="You Lose" display-tooltip-when-elided="true" name="TitleLabel" class="titleLabel" />
         <ui:Label tabindex="-1" text="You were caught by the Hook Man&#10;Hand Car Door Guy. Try again!" display-tooltip-when-elided="true" name="SubtitleLabel" class="subtitleLabel" />
         <ui:Button text="Play Again" display-tooltip-when-elided="true" name="PlayAgainButton" class="button" />
+        <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="MainMenuButton" class="button" />
         <ui:Button text="Quit" display-tooltip-when-elided="true" name="QuitButton" class="button" />
     </ui:VisualElement>
 </ui:UXML>

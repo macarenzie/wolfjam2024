@@ -33,6 +33,7 @@ public class MainMenu : MonoBehaviour
     {
 
         SceneManager.LoadScene("Cutscene");
+        Debug.Log("fjdisl");
     }
 
     /// <summary>

@@ -10,8 +10,6 @@ public class Slideshow : MonoBehaviour
     [SerializeField] Texture[] imageArray;
     private int currentImage;
 
-    private string key;
-
     private UIDocument document;
     private Button button;
 
