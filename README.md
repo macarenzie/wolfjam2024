@@ -1,5 +1,5 @@
-# PROJECT NAME HERE
-## TEAM NAME HERE
+# Scare Parts
+## Hook Hand Car Man Fanclub (HHCMF)
 Created for the 2024 Wolfjam hosted by Wolfjaw Studio
 
 **Team Members**
