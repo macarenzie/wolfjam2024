@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public enum GunType
 {
@@ -10,63 +8,80 @@ public enum GunType
 }
 public class BulletManager : MonoBehaviour
 {
-    // fields
-    public GunType Type = GunType.Capture;
-    public GameObject Gun;
+    // === FIELDS ===
+
+    private GameObject gun;
     [SerializeField] private GameObject player;
-    public List<GameObject> bullets;
     [SerializeField] private GameObject bullet;
-    public float speed = 6.0f;
-    private InputActionReference fireAction;
+    private float speed = 6.0f;
+
     [SerializeField] private Sprite spiritGun;
     [SerializeField] private Sprite cryptidGun;
     [SerializeField] private Sprite spiritBullet;
     [SerializeField] private Sprite cryptidBullet;
 
+    // === PROPERTIES ===
 
+    public GunType Type
+    {
+        get { return _type; }
+        set { _type = value; }
+    }
+    private GunType _type = GunType.Capture;
+
+
+    public List<GameObject> bullets
+    {
+        get { return _bullets; }
+        set { _bullets = value; }
+    }
+    private List<GameObject> _bullets = new List<GameObject>();
+
+    // === METHODS ===
 
     // Start is called before the first frame update
     void Start()
     {
-        bullets = new List<GameObject>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach(GameObject currentBullet in  bullets) 
-        { 
+        foreach (GameObject currentBullet in bullets)
+        {
             currentBullet.transform.Translate(Vector3.up * speed * Time.deltaTime);
         }
     }
 
-    //InputAction.CallbackContext context
+    /// <summary>
+    /// InputAction.CallbackContext context
+    /// Fire a bullet
+    /// </summary>
     public void OnFire()
     {
-       
-     
-            bullets.Add(Instantiate(bullet, player.GetComponent<SpriteRenderer>().bounds.center, Quaternion.identity));
-       
+        bullets.Add(Instantiate(bullet, player.GetComponent<SpriteRenderer>().bounds.center, Quaternion.identity));
     }
 
-    //InputAction.CallbackContext context
+    /// <summary>
+    /// InputAction.CallbackContext context
+    /// Switch gun type
+    /// </summary>
     public void OnSwitch()
     {
-        
-            // switch gun types
-            switch (Type)
-            {
-                case GunType.Kill:
-                    Gun.GetComponent<SpriteRenderer>().sprite = spiritGun;
-                    bullet.GetComponent<SpriteRenderer>().sprite = spiritBullet;
-                    Type = GunType.Capture;
-                    break;
-                default:
-                    Gun.GetComponent<SpriteRenderer>().sprite = cryptidGun;
-                    bullet.GetComponent<SpriteRenderer>().sprite = cryptidBullet;
-                    Type = GunType.Kill;
-                    break;
-            } 
+
+        // switch gun types
+        switch (Type)
+        {
+            case GunType.Kill:
+                gun.GetComponent<SpriteRenderer>().sprite = spiritGun;
+                bullet.GetComponent<SpriteRenderer>().sprite = spiritBullet;
+                Type = GunType.Capture;
+                break;
+            default:
+                gun.GetComponent<SpriteRenderer>().sprite = cryptidGun;
+                bullet.GetComponent<SpriteRenderer>().sprite = cryptidBullet;
+                Type = GunType.Kill;
+                break;
         }
-    
+    }
 }
