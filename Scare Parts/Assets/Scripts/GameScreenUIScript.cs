@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class GameScreenUIScript : MonoBehaviour
 {
-    // === Fields ===
+    // === FIELDS ===
 
     // Reference to the player manager
     [SerializeField] public PlayerManager playerManager;
@@ -21,36 +18,31 @@ public class GameScreenUIScript : MonoBehaviour
     private ProgressBar gasBar;
 
 
-    // === Methods ===
+    // === METHODS ===
 
     private void Awake()
     {
-        // Get the UIDocument
+        // Initialize variables
         document = GetComponent<UIDocument>();
-
-        // Get the healthBar
         healthBar = document.rootVisualElement.Q("HealthBar") as ProgressBar;
-
-        // Get the gasBar
         gasBar = document.rootVisualElement.Q("GasBar") as ProgressBar;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        // Save ref of the inside bar of the healthBar
+        // Save reference of the inner health bar
+        // This is the part of the bar that moves in response to health
         VisualElement insideHealthBar = document.rootVisualElement.Q(className: "unity-progress-bar__progress");
 
-        // Change the inside color of the healthBar to red
+        // Change the color of the inner health bar
         insideHealthBar.style.backgroundColor = Color.red;
     }
 
+    // Updates bar values
     private void Update()
     {
-        // Update the healthBar
         healthBar.value = playerManager.Health;
-
-        // Update the gasBar
         gasBar.value = playerManager.Gas;
     }
 }
