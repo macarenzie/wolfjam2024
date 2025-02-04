@@ -15,9 +15,28 @@ public enum EnemyType
 /// </summary>
 public class Enemy : MonoBehaviour
 {
-    //fields
-    [SerializeField] public EnemyType Type;
-    public bool IsCaught = false;
+    // === FIELDS ===
+
+    [SerializeField] private EnemyType _enemyType;
+    private bool _isCaught = false;
+
+
+    // === PROPERTIES ===
+
+    public EnemyType Type
+    {
+        get { return _enemyType; }
+        set { _enemyType = value; }
+    }
+
+    public bool IsCaught
+    {
+        get { return _isCaught; }
+        set { _isCaught = value; }
+    }
+
+
+    // === METHODS ===
 
     // Start is called before the first frame update
     void Start()
