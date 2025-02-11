@@ -6,6 +6,7 @@ using UnityEngine;
 public class CollisionManager : MonoBehaviour
 {
     // == FIELDS ===
+
     private float camHeight;
 
     [SerializeField] private GameObject player;
@@ -17,6 +18,7 @@ public class CollisionManager : MonoBehaviour
 
 
     // === PROPERTIES ===
+
     public bool IsHit
     {
         get { return _isHit;  }
@@ -40,6 +42,7 @@ public class CollisionManager : MonoBehaviour
 
 
     // === METHODS ===
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +54,6 @@ public class CollisionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         IsHit = false;
         for (int i = 0; i < Obstacles.Count; i++)
         {
@@ -71,24 +73,18 @@ public class CollisionManager : MonoBehaviour
                             playerManager.ResourceChange(true, -15f);
                             print("hit");
                             IsHit = true;
-                           
-
                             break;
                         default:
                             playerManager.ResourceChange(true, -10f);
                             IsHit = true;
-                           
-
                             break;
                     }
-
                 }
                 // if the obstacle is a puddle
                 else
                 {
                     player.GetComponent<PlayerManager>().IsSlipping = true;
                     IsHit =true;
-                   
                     print("hit");
                 }
             }
@@ -119,7 +115,6 @@ public class CollisionManager : MonoBehaviour
                             playerManager.ResourceChange(true, -5f);
                             IsHit = true;
                             print("hit");
-
                             break;
                     }
 
@@ -207,7 +202,6 @@ public class CollisionManager : MonoBehaviour
                 bulletManager.bullets.RemoveAt(j);
                 j--;
             }
-
         }
         //isHit = false;
     }
@@ -224,6 +218,7 @@ public class CollisionManager : MonoBehaviour
         {
             yIntersect = true;
         }
+
         if (
             (move.GetComponent<SpriteRenderer>().bounds.max.x > stop.GetComponent<SpriteRenderer>().bounds.min.x &&
             move.GetComponent<SpriteRenderer>().bounds.max.x < stop.GetComponent<SpriteRenderer>().bounds.max.x) ||
