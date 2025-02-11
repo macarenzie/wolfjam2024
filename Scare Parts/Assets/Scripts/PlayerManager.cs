@@ -12,30 +12,47 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PlayerManager : MonoBehaviour
 {
-    // fields
-    public float Health = 100;
-    public float Gas = 100;
-    public bool IsSlipping = false;
-
-    private Vector3 objectPosition;         // Initialized in Start() via transform
-    [SerializeField] private float speed = 5f;      // Set in the inspector
-    private int roadWidth = 4;
+    // === FIELDS ===
+    [SerializeField] private float speed = 5f; // set in the inspector
     [SerializeField] private float redCooldown = 1;
-
-    public SpriteRenderer rend;
     [SerializeField] private CollisionManager collison;
 
-    // Direction object is facing, must be normalized
-    private Vector3 direction;
-    internal Vector3 Direction
-    {
-        get { return direction; } // Provide it if needed
-        set // Only set a normalized copy!
-        {
-            direction = value.normalized;
-        }
-    }
+    private Vector3 objectPosition; // initialized in Start() via transform
+    private int roadWidth = 4;
+    private SpriteRenderer rend;
 
+
+    // === PROPERTIES ===
+    public float Health
+    {
+        get { return _health; }
+        set { _health = value; }
+    }
+    private float _health = 100;
+
+    public float Gas
+    {
+        get { return _gas; }
+        set { _gas = value; }
+    }
+    private float _gas = 100;
+
+    public bool IsSlipping
+    {
+        get { return _isSlipping; }
+        set { _isSlipping = value; }
+    }
+    private bool _isSlipping = false;
+
+    public Vector3 Direction
+    {
+        get { return _direction; }
+        set { _direction = value.normalized; }
+    }
+    private Vector3 _direction;
+
+
+    // === METHODS ===
     // Start is called before the first frame update
     void Start()
     {
@@ -105,15 +122,18 @@ public class PlayerManager : MonoBehaviour
         #endregion
     }
 
-    // The method that gets called to handle any player movement input
+    /// <summary>
+    /// handles player movement input
+    /// </summary>
+    /// <param name="context">external input manager</param>
     public void OnMove(InputAction.CallbackContext context)
     {
-        // Get latest value for input from Input System for direction
+        // translates the latest input to vehicle direction
         Direction = context.ReadValue<Vector2>();
     }
 
     /// <summary>
-    /// Change a specific resource by a certain number
+    /// updates given resource values
     /// </summary>
     /// <param name="isHealth">determines what resource is affected</param>
     /// <param name="num">amount to change resource by</param>
