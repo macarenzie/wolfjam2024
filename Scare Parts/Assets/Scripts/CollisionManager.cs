@@ -5,126 +5,121 @@ using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
-    // fields
-    private List<GameObject> enemies;
-    private List<GameObject> obstacles;
+    // == FIELDS ===
+
+    private float camHeight;
+
     [SerializeField] private GameObject player;
     [SerializeField] private BulletManager bulletManager;
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private Camera cam;
     [SerializeField] private Sprite capturedSpirit;
     [SerializeField] private Sprite capturedCryptid;
-    private float camHeight;
-    public bool isHit = false;
+
+
+    // === PROPERTIES ===
+
+    public bool IsHit
+    {
+        get { return _isHit;  }
+        set { _isHit = value; }
+    }
+    private bool _isHit = false;
+
     public List<GameObject> Enemies
     {
-        get
-        {
-            return enemies;
-        }
-        set
-        {
-            enemies = value;
-        }
+        get { return _enemies; }
+        set { _enemies = value; }
     }
+    private List<GameObject> _enemies;
 
     public List<GameObject> Obstacles
     {
-        get
-        {
-            return obstacles;
-        }
-        set
-        {
-            obstacles = value;
-        }
+        get { return _obstacles; }
+        set { _obstacles = value; }
     }
+    private List<GameObject> _obstacles;
+
+
+    // === METHODS ===
 
     // Start is called before the first frame update
     void Start()
     {
-        enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
-        obstacles = new List<GameObject>(GameObject.FindGameObjectsWithTag("Obstacle"));
+        Enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+        Obstacles = new List<GameObject>(GameObject.FindGameObjectsWithTag("Obstacle"));
         camHeight = cam.orthographicSize;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        isHit = false;
-        for (int i = 0; i < obstacles.Count; i++)
+        IsHit = false;
+        for (int i = 0; i < Obstacles.Count; i++)
         {
             // Collision occuring
-            if (AABBCollision(player, obstacles[i]) && !obstacles[i].GetComponent<Obstacle>().WasHit)
+            if (AABBCollision(player, Obstacles[i]) && !Obstacles[i].GetComponent<Obstacle>().WasHit)
             {
                 // if the obstacle is a rock or log
-                if (obstacles[i].GetComponent<Obstacle>().Type != ObstacleType.Puddle)
+                if (Obstacles[i].GetComponent<Obstacle>().Type != ObstacleType.Puddle)
                 {
                     // turn off hitbox
-                    obstacles[i].GetComponent<Obstacle>().WasHit = true;
+                    Obstacles[i].GetComponent<Obstacle>().WasHit = true;
 
                     // lower health
-                    switch (obstacles[i].GetComponent<Obstacle>().Type)
+                    switch (Obstacles[i].GetComponent<Obstacle>().Type)
                     {
                         case ObstacleType.Rock:
                             playerManager.ResourceChange(true, -15f);
                             print("hit");
-                            isHit = true;
-                           
-
+                            IsHit = true;
                             break;
                         default:
                             playerManager.ResourceChange(true, -10f);
-                            isHit = true;
-                           
-
+                            IsHit = true;
                             break;
                     }
-
                 }
                 // if the obstacle is a puddle
                 else
                 {
                     player.GetComponent<PlayerManager>().IsSlipping = true;
-                    isHit =true;
-                   
+                    IsHit =true;
                     print("hit");
                 }
             }
-            else if(obstacles[i].GetComponent<Obstacle>().Type == ObstacleType.Puddle)
+            else if(Obstacles[i].GetComponent<Obstacle>().Type == ObstacleType.Puddle)
             {
                 player.GetComponent<PlayerManager>().IsSlipping = false;
             }
         }
 
         // AABB
-        for (int i = 0; i < enemies.Count; i++)
+        for (int i = 0; i < Enemies.Count; i++)
         {
             // Collision occuring
-            if (AABBCollision(player, enemies[i]))
+            if (AABBCollision(player, Enemies[i]))
             {
                 // if the enemy is not caught
-                if (!enemies[i].GetComponent<Enemy>().IsCaught)
+                if (!Enemies[i].GetComponent<Enemy>().IsCaught)
                 {
                     // lower health
-                    switch (enemies[i].GetComponent<Enemy>().Type)
+                    switch (Enemies[i].GetComponent<Enemy>().Type)
                     {
                         case EnemyType.Cryptid:
                             playerManager.ResourceChange(true, -10f);
-                            isHit = true;
+                            IsHit = true;
                             print("hit");
                             break;
                         default:
                             playerManager.ResourceChange(true, -5f);
-                            isHit = true;
+                            IsHit = true;
                             print("hit");
-
                             break;
                     }
 
-                    Destroy(enemies[i]);
-                    enemies.RemoveAt(i);
+                    Destroy(Enemies[i]);
+                    Enemies.RemoveAt(i);
                     if (i != 0)
                     {
                         i--;
@@ -134,7 +129,7 @@ public class CollisionManager : MonoBehaviour
                 else
                 {
                     // add gas/health
-                    switch (enemies[i].GetComponent<Enemy>().Type)
+                    switch (Enemies[i].GetComponent<Enemy>().Type)
                     {
                         case EnemyType.Cryptid:
                             playerManager.ResourceChange(true, 10f);
@@ -144,8 +139,8 @@ public class CollisionManager : MonoBehaviour
                             break;
                     }
 
-                    Destroy(enemies[i]);
-                    enemies.RemoveAt(i);
+                    Destroy(Enemies[i]);
+                    Enemies.RemoveAt(i);
                     if (i != 0)
                     {
                         i--;
@@ -154,10 +149,10 @@ public class CollisionManager : MonoBehaviour
             }
 
             // destroy enemy if off bottom of screen
-            if (enemies[i].GetComponent<SpriteRenderer>().bounds.max.y < -camHeight)
+            if (Enemies[i].GetComponent<SpriteRenderer>().bounds.max.y < -camHeight)
             {
-                Destroy(enemies[i]);
-                enemies.RemoveAt(i);
+                Destroy(Enemies[i]);
+                Enemies.RemoveAt(i);
                 if (i != 0)
                 {
                     i--; 
@@ -167,25 +162,25 @@ public class CollisionManager : MonoBehaviour
         
         for (int j = 0; j < bulletManager.bullets.Count; j++)
         {
-            for (int i = 0; i < enemies.Count; i++)
+            for (int i = 0; i < Enemies.Count; i++)
             {
                 // Collision occuring
-                if (AABBCollision(bulletManager.bullets[j], enemies[i]))
+                if (AABBCollision(bulletManager.bullets[j], Enemies[i]))
                 {
-                    if ((bulletManager.Type == GunType.Capture && enemies[i].GetComponent<Enemy>().Type == EnemyType.Spirit) ||
-                        (bulletManager.Type == GunType.Kill && enemies[i].GetComponent<Enemy>().Type == EnemyType.Cryptid))
+                    if ((bulletManager.Type == GunType.Capture && Enemies[i].GetComponent<Enemy>().Type == EnemyType.Spirit) ||
+                        (bulletManager.Type == GunType.Kill && Enemies[i].GetComponent<Enemy>().Type == EnemyType.Cryptid))
                     {
                         // capture enemy, change sprites
-                        enemies[i].GetComponent<Enemy>().IsCaught = true;
-                        switch (enemies[i].GetComponent<Enemy>().Type)
+                        Enemies[i].GetComponent<Enemy>().IsCaught = true;
+                        switch (Enemies[i].GetComponent<Enemy>().Type)
                         {
                             case EnemyType.Spirit:
-                                enemies[i].GetComponent<SpriteRenderer>().sprite = capturedSpirit;
+                                Enemies[i].GetComponent<SpriteRenderer>().sprite = capturedSpirit;
                                 break;
                             default:
-                                enemies[i].GetComponent<SpriteRenderer>().sprite = capturedCryptid;
-                                enemies[i].GetComponent<Animation>().enabled = false;
-                                enemies[i].GetComponent<Animator>().enabled = false;
+                                Enemies[i].GetComponent<SpriteRenderer>().sprite = capturedCryptid;
+                                Enemies[i].GetComponent<Animation>().enabled = false;
+                                Enemies[i].GetComponent<Animator>().enabled = false;
                                 break;
                         }
                     }
@@ -207,7 +202,6 @@ public class CollisionManager : MonoBehaviour
                 bulletManager.bullets.RemoveAt(j);
                 j--;
             }
-
         }
         //isHit = false;
     }
@@ -224,6 +218,7 @@ public class CollisionManager : MonoBehaviour
         {
             yIntersect = true;
         }
+
         if (
             (move.GetComponent<SpriteRenderer>().bounds.max.x > stop.GetComponent<SpriteRenderer>().bounds.min.x &&
             move.GetComponent<SpriteRenderer>().bounds.max.x < stop.GetComponent<SpriteRenderer>().bounds.max.x) ||
