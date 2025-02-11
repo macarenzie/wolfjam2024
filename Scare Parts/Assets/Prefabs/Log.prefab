@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -3724754890378372056}
   - component: {fileID: -5975347922310435463}
   - component: {fileID: -8684016554708225197}
+  - component: {fileID: 5679931129931837249}
   m_Layer: 0
   m_Name: Log
   m_TagString: Obstacle
@@ -32,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &-3724754890378372056
 SpriteRenderer:
@@ -114,3 +115,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementFactor: 7
   transform: {fileID: 6468754376345277941}
+--- !u!65 &5679931129931837249
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874481181141177184}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.7746243, y: 2.4915407, z: 0.2}
+  m_Center: {x: -0.3011098, y: 0.06948672, z: 0}

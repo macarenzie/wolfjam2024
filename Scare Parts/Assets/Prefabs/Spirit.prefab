@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8047077052978337022}
   - component: {fileID: 1457825757423106816}
   - component: {fileID: 5462412155514050586}
+  - component: {fileID: 991547710609911671}
   m_Layer: 0
   m_Name: Spirit
   m_TagString: Enemy
@@ -32,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8047077052978337022
 SpriteRenderer:
@@ -98,8 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f479c756dedc77c41958fab191bc6da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
-  IsCaught: 1
+  _enemyType: 0
 --- !u!114 &5462412155514050586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,3 +114,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementFactor: 5
   transform: {fileID: 159491704126684254}
+--- !u!65 &991547710609911671
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984666010903929847}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.51643246, y: 0.52980334, z: 0.20000002}
+  m_Center: {x: 0.003342724, y: -0.010028198, z: 0}
