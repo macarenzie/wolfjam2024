@@ -15,12 +15,6 @@ public enum EnemyType
 /// </summary>
 public class Enemy : MonoBehaviour
 {
-    // === FIELDS ===
-
-    [SerializeField] private EnemyType _enemyType;
-    private bool _isCaught = false;
-
-
     // === PROPERTIES ===
 
     public EnemyType Type
@@ -28,13 +22,15 @@ public class Enemy : MonoBehaviour
         get { return _enemyType; }
         set { _enemyType = value; }
     }
+    [SerializeField] private EnemyType _enemyType;
 
     public bool IsCaught
     {
         get { return _isCaught; }
         set { _isCaught = value; }
     }
-
+    private bool _isCaught = false;
+    
 
     // === METHODS ===
 
