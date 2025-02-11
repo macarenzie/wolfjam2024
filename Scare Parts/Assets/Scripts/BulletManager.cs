@@ -20,6 +20,7 @@ public class BulletManager : MonoBehaviour
     [SerializeField] private Sprite spiritBullet;
     [SerializeField] private Sprite cryptidBullet;
 
+
     // === PROPERTIES ===
 
     public GunType Type
@@ -36,6 +37,7 @@ public class BulletManager : MonoBehaviour
         set { _bullets = value; }
     }
     private List<GameObject> _bullets = new List<GameObject>();
+
 
     // === METHODS ===
 
@@ -68,7 +70,6 @@ public class BulletManager : MonoBehaviour
     /// </summary>
     public void OnSwitch()
     {
-
         // switch gun types
         switch (Type)
         {
