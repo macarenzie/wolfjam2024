@@ -5,41 +5,48 @@ using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
-    // fields
-    private List<GameObject> enemies;
-    private List<GameObject> obstacles;
+    // === FIELDS ===
     [SerializeField] private GameObject player;
     [SerializeField] private BulletManager bulletManager;
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private Camera cam;
     [SerializeField] private Sprite capturedSpirit;
     [SerializeField] private Sprite capturedCryptid;
+
+    private List<GameObject> enemies;
+    private List<GameObject> obstacles;
     private float camHeight;
-    public bool isHit = false;
+
+
+
+
+
+    // === PROPERTIES ===
+    public bool IsHit
+    {
+        get { return _isHit; }
+        set { _isHit = value; }
+    }
+    private bool _isHit = false;
+
+
     public List<GameObject> Enemies
     {
-        get
-        {
-            return enemies;
-        }
-        set
-        {
-            enemies = value;
-        }
+        get { return enemies; }
+        set { enemies = value; }
     }
 
     public List<GameObject> Obstacles
     {
-        get
-        {
-            return obstacles;
-        }
-        set
-        {
-            obstacles = value;
-        }
+        get { return obstacles; }
+        set { obstacles = value; }
     }
 
+
+
+
+
+    // === METHODS ===
     // Start is called before the first frame update
     void Start()
     {
@@ -211,6 +218,7 @@ public class CollisionManager : MonoBehaviour
         }
         //isHit = false;
     }
+
 
     bool AABBCollision(GameObject move, GameObject stop)
     {
