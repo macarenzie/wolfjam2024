@@ -38,10 +38,10 @@ public class GameScreenUIScript : MonoBehaviour
         // Change the color of the inner health bar
         insideHealthBar.style.backgroundColor = Color.red;
     }
-
-    // Updates bar values
+    
     private void Update()
     {
+        // Updates bar values
         healthBar.value = playerManager.Health;
         gasBar.value = playerManager.Gas;
     }
