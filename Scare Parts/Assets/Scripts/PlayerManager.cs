@@ -13,6 +13,7 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : MonoBehaviour
 {
     // === FIELDS ===
+
     [SerializeField] private float speed = 5f; // set in the inspector
     [SerializeField] private float redCooldown = 1;
     [SerializeField] private CollisionManager collison;
@@ -23,6 +24,7 @@ public class PlayerManager : MonoBehaviour
 
 
     // === PROPERTIES ===
+
     public float Health
     {
         get { return _health; }
@@ -73,7 +75,7 @@ public class PlayerManager : MonoBehaviour
             redCooldown = 0;
         }
 
-        if (collison.isHit)
+        if (collison.IsHit)
         {
             redCooldown = 1;
             rend.color = Color.red;
@@ -84,14 +86,14 @@ public class PlayerManager : MonoBehaviour
             rend.color = Color.white;
         }
 
-        #region MOVEMENT
+        // movement
         if (IsSlipping)
         {
             return;
         }
 
         // Velocity is direction * speed * deltaTime 
-        Vector3 velocity = direction * speed * Time.deltaTime;
+        Vector3 velocity = Direction * speed * Time.deltaTime;
 
         // New position is current position + velocity
         objectPosition += velocity;
@@ -108,9 +110,8 @@ public class PlayerManager : MonoBehaviour
         {
             objectPosition.x = -roadWidth;
         }
-        #endregion
 
-        #region RESOURCES
+        // resources
         // decrease gas over time
         Gas -= Time.deltaTime * 1;
         if(Gas < 0)
@@ -118,8 +119,6 @@ public class PlayerManager : MonoBehaviour
             SceneManager.LoadScene("LoseScene");
         }
         //Debug.Log(Gas);
-
-        #endregion
     }
 
     /// <summary>
