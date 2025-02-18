@@ -12,30 +12,49 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PlayerManager : MonoBehaviour
 {
-    // fields
-    public float Health = 100;
-    public float Gas = 100;
-    public bool IsSlipping = false;
+    // === FIELDS ===
 
-    private Vector3 objectPosition;         // Initialized in Start() via transform
-    [SerializeField] private float speed = 5f;      // Set in the inspector
-    private int roadWidth = 4;
+    [SerializeField] private float speed = 5f; // set in the inspector
     [SerializeField] private float redCooldown = 1;
-
-    public SpriteRenderer rend;
     [SerializeField] private CollisionManager collison;
 
-    // Direction object is facing, must be normalized
-    private Vector3 direction;
-    internal Vector3 Direction
-    {
-        get { return direction; } // Provide it if needed
-        set // Only set a normalized copy!
-        {
-            direction = value.normalized;
-        }
-    }
+    private Vector3 objectPosition; // initialized in Start() via transform
+    private int roadWidth = 4;
+    private SpriteRenderer rend;
 
+
+    // === PROPERTIES ===
+
+    public float Health
+    {
+        get { return _health; }
+        set { _health = value; }
+    }
+    private float _health = 100;
+
+    public float Gas
+    {
+        get { return _gas; }
+        set { _gas = value; }
+    }
+    private float _gas = 100;
+
+    public bool IsSlipping
+    {
+        get { return _isSlipping; }
+        set { _isSlipping = value; }
+    }
+    private bool _isSlipping = false;
+
+    public Vector3 Direction
+    {
+        get { return _direction; }
+        set { _direction = value.normalized; }
+    }
+    private Vector3 _direction;
+
+
+    // === METHODS ===
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +75,7 @@ public class PlayerManager : MonoBehaviour
             redCooldown = 0;
         }
 
-        if (collison.isHit)
+        if (collison.IsHit)
         {
             redCooldown = 1;
             rend.color = Color.red;
@@ -67,14 +86,14 @@ public class PlayerManager : MonoBehaviour
             rend.color = Color.white;
         }
 
-        #region MOVEMENT
+        // movement
         if (IsSlipping)
         {
             return;
         }
 
         // Velocity is direction * speed * deltaTime 
-        Vector3 velocity = direction * speed * Time.deltaTime;
+        Vector3 velocity = Direction * speed * Time.deltaTime;
 
         // New position is current position + velocity
         objectPosition += velocity;
@@ -91,9 +110,8 @@ public class PlayerManager : MonoBehaviour
         {
             objectPosition.x = -roadWidth;
         }
-        #endregion
 
-        #region RESOURCES
+        // resources
         // decrease gas over time
         Gas -= Time.deltaTime * 1;
         if(Gas < 0)
@@ -101,19 +119,20 @@ public class PlayerManager : MonoBehaviour
             SceneManager.LoadScene("LoseScene");
         }
         //Debug.Log(Gas);
-
-        #endregion
     }
 
-    // The method that gets called to handle any player movement input
+    /// <summary>
+    /// handles player movement input
+    /// </summary>
+    /// <param name="context">external input manager</param>
     public void OnMove(InputAction.CallbackContext context)
     {
-        // Get latest value for input from Input System for direction
+        // translates the latest input to vehicle direction
         Direction = context.ReadValue<Vector2>();
     }
 
     /// <summary>
-    /// Change a specific resource by a certain number
+    /// updates given resource values
     /// </summary>
     /// <param name="isHealth">determines what resource is affected</param>
     /// <param name="num">amount to change resource by</param>
