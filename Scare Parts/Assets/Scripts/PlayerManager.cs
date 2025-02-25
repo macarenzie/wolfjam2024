@@ -16,7 +16,7 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] private float speed = 5f; // set in the inspector
     [SerializeField] private float redCooldown = 1;
-    [SerializeField] private CollisionManager collison;
+    //[SerializeField] private CollisionManager collison;
 
     private Vector3 objectPosition; // initialized in Start() via transform
     private int roadWidth = 4;
@@ -75,12 +75,12 @@ public class PlayerManager : MonoBehaviour
             redCooldown = 0;
         }
 
-        if (collison.IsHit)
-        {
-            redCooldown = 1;
-            rend.color = Color.red;
-
-        }
+        //if (collison.IsHit)
+        //{
+        //    redCooldown = 1;
+        //    rend.color = Color.red;
+        //
+        //}
         else if (redCooldown <= 0)
         {
             rend.color = Color.white;
