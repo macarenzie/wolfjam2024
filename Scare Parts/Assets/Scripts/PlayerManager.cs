@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private CollisionManager collison;
 
     private Vector3 objectPosition; // initialized in Start() via transform
-    private int roadWidth = 4;
+    private int roadWidth = 8; // TODO: confirm correct width when we have the sprite
     private SpriteRenderer rend;
 
 
@@ -86,7 +86,7 @@ public class PlayerManager : MonoBehaviour
             rend.color = Color.white;
         }
 
-        // movement
+        // --- Movement ---
         if (IsSlipping)
         {
             return;
@@ -111,7 +111,13 @@ public class PlayerManager : MonoBehaviour
             objectPosition.x = -roadWidth;
         }
 
-        // resources
+        // TODO: 
+        // if (objectPosition.x > smallerRoadWidth)
+        // {
+        //     speedScale -= enoughToSlowDown;
+        // }
+
+        // --- Resources ---
         // decrease gas over time
         Gas -= Time.deltaTime * 1;
         if(Gas < 0)
