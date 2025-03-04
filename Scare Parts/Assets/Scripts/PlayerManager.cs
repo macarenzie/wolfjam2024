@@ -134,7 +134,7 @@ public class PlayerManager : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         // translates the latest input to vehicle direction
-        Direction = context.ReadValue<Vector2>();
+        Direction = new Vector2(context.ReadValue<Vector2>().x, 0);
     }
 
     /// <summary>
