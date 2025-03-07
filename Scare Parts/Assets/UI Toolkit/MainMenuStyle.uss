@@ -6,20 +6,21 @@
 }
 
 .button {
-    width: 25%;
+    width: 17%;
     align-self: center;
-    height: 10%;
+    height: 12%;
     top: 167px;
     margin-left: 24px;
     margin-right: 24px;
-    margin-top: 24px;
-    margin-bottom: 24px;
+    margin-top: 40px;
+    margin-bottom: -9px;
     font-size: 60px;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     transition-duration: 0.35s;
+    background-image: none;
 }
 
 .button:hover {
