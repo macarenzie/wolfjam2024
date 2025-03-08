@@ -6,7 +6,7 @@ public class GameScreenUIScript : MonoBehaviour
     // === FIELDS ===
 
     // Reference to the player manager
-    [SerializeField] public PlayerManager playerManager;
+    [SerializeField] private PlayerManager playerManager;
 
     // Reference to the UIDocument
     private UIDocument document;
