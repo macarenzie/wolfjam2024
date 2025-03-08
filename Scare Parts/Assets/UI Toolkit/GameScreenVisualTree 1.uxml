@@ -4,8 +4,8 @@
         <ui:VisualElement name="UIArea" class="UIArea" style="flex-wrap: wrap-reverse; flex-direction: row-reverse;">
             <ui:Label tabindex="-1" text="Gas" display-tooltip-when-elided="true" name="GasLabel" class="label" style="left: 14%;" />
             <ui:Label tabindex="-1" text="Health" display-tooltip-when-elided="true" name="HealthLabel" class="label" style="left: 326px;" />
-            <ui:ProgressBar value="57" name="HealthBar" class="HealthBar" />
             <ui:ProgressBar value="57" name="GasBar" class="HealthBar" />
         </ui:VisualElement>
+        <ui:ProgressBar value="57" name="HealthBar" class="HealthBar" style="position: absolute;" />
     </ui:VisualElement>
 </ui:UXML>

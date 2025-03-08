@@ -17,6 +17,9 @@ public class GameScreenUIScript : MonoBehaviour
     // Reference to the gas bar UI element
     private ProgressBar gasBar;
 
+    // Reference to the current player positon
+    private Vector3 playerPosition;
+
 
     // === METHODS ===
 
@@ -44,5 +47,10 @@ public class GameScreenUIScript : MonoBehaviour
         // Updates bar values
         healthBar.value = playerManager.Health;
         gasBar.value = playerManager.Gas;
+
+        // Move the healthbar to the player's current position
+        playerPosition = playerManager.ObjectPosition;
+        healthBar.transform.position = playerPosition / 100;
+        // Position needs some type of scalar as the UI and game space use different units
     }
 }
