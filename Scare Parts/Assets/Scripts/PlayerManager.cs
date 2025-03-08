@@ -18,7 +18,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float redCooldown = 1;
     [SerializeField] private CollisionManager collison;
 
-    private Vector3 objectPosition; // initialized in Start() via transform
     private int roadWidth = 4;
     private SpriteRenderer rend;
 
@@ -52,6 +51,14 @@ public class PlayerManager : MonoBehaviour
         set { _direction = value.normalized; }
     }
     private Vector3 _direction;
+
+
+    public Vector3 ObjectPosition
+    {
+        get { return objectPosition; }
+        set { objectPosition = value; }
+    }
+    private Vector3 objectPosition; // initialized in Start() via transform
 
 
     // === METHODS ===
