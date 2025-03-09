@@ -14,11 +14,17 @@ public class GameScreenUIScript : MonoBehaviour
     // Reference to the health bar UI element
     private ProgressBar healthBar;
 
-    // Reference to the gas bar UI element
-    private ProgressBar gasBar;
+
+    // WIP moving health bar is commented out as
+    // it was determined to be currently out of scope
 
     // Reference to the current player positon
-    private Vector3 playerPosition;
+    // private Vector3 playerPosition;
+
+    // Scalar between UI scale and game scale
+    //[SerializeField] private int positionScalar;
+    //[SerializeField] private int xOffset;
+    //[SerializeField] private int yOffset;
 
 
     // === METHODS ===
@@ -28,7 +34,6 @@ public class GameScreenUIScript : MonoBehaviour
         // Initialize variables
         document = GetComponent<UIDocument>();
         healthBar = document.rootVisualElement.Q("HealthBar") as ProgressBar;
-        gasBar = document.rootVisualElement.Q("GasBar") as ProgressBar;
     }
 
     // Start is called before the first frame update
@@ -46,11 +51,37 @@ public class GameScreenUIScript : MonoBehaviour
     {
         // Updates bar values
         healthBar.value = playerManager.Health;
-        gasBar.value = playerManager.Gas;
+
+
+        // TODO: Get the health bar to translate accoring to player position
 
         // Move the healthbar to the player's current position
-        playerPosition = playerManager.ObjectPosition;
-        healthBar.transform.position = playerPosition / 100;
-        // Position needs some type of scalar as the UI and game space use different units
+        // playerPosition = playerManager.ObjectPosition;
+
+
+        // Attempt moving it with the translate
+        // This makes it move, but it's position is off
+        // and it doesn't move the right amounts
+
+        //healthBar.style.translate = new Translate(
+        //    (playerPosition.x + xOffset) * positionScalar,
+        //    (playerPosition.y + yOffset) * positionScalar);
+
+
+        // Attempt to translate the coordinates from
+        // the UI system to the game screen
+
+        //Vector2 playerPositionCorrected = new Vector2(playerPosition.x, Screen.height - playerPosition.y);
+        //playerPositionCorrected = RuntimePanelUtils.ScreenToPanel(document.rootVisualElement.panel, playerPositionCorrected);
+
+
+        // Attempt moving it with .top and .left
+        // but this also has the same problems as .translate
+        // It doesn't translate to the player's position and 
+        // it doesnt move the right amounts
+
+        //healthBar.style.top = playerPositionCorrected.y;
+        //healthBar.style.left = playerPositionCorrected.x;
+        
     }
 }
