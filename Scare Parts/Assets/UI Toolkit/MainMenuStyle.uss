@@ -14,13 +14,11 @@
     margin-right: 24px;
     margin-top: 40px;
     margin-bottom: -9px;
-    font-size: 60px;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+    font-size: 48px;
     transition-duration: 0.35s;
     background-image: none;
+    color: rgb(224, 224, 224);
+    background-color: rgb(79, 79, 79);
 }
 
 .button:hover {
