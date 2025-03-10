@@ -1,10 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI%20Toolkit/WinAndLoseStyle.uss?fileID=7433441132597879392&amp;guid=b33572961b7488143a09927fe2620ee6&amp;type=3#WinAndLoseStyle" />
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=03c2a81ad6370d442b84d856c7d1d7a2&amp;type=3#MainMenuStyle" />
     <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgb(137, 94, 104);">
-        <ui:Label tabindex="-1" text="You Lose" display-tooltip-when-elided="true" name="TitleLabel" class="titleLabel" />
-        <ui:Label tabindex="-1" text="You were caught by the Hook Man&#10;Hand Car Door Guy. Try again!" display-tooltip-when-elided="true" name="SubtitleLabel" class="subtitleLabel" />
-        <ui:Button text="Play Again" display-tooltip-when-elided="true" name="PlayAgainButton" class="button" />
-        <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="MainMenuButton" class="button" />
-        <ui:Button text="Quit" display-tooltip-when-elided="true" name="QuitButton" class="button" />
+        <ui:Label tabindex="-1" text="You Lose" display-tooltip-when-elided="true" name="TitleLabel" class="titleLabel" style="padding-bottom: -52px; margin-bottom: -44px;" />
+        <ui:Label tabindex="-1" text="You were caught by the Hook Man&#10;Hand Car Door Guy. Try again!" display-tooltip-when-elided="true" name="SubtitleLabel" class="subtitleLabel" style="padding-top: 0;" />
+        <ui:Button text="Play Again" display-tooltip-when-elided="true" name="PlayAgainButton" class="button largeButton" style="font-size: 60px;" />
+        <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="MainMenuButton" class="button smallButtonV1" style="font-size: 41px;" />
+        <ui:Button text="Quit" display-tooltip-when-elided="true" name="QuitButton" class="button smallButtonV2" />
     </ui:VisualElement>
 </ui:UXML>
