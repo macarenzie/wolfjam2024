@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private CollisionManager collison;
 
     private Vector3 objectPosition; // initialized in Start() via transform
-    private int roadWidth = 4;
+    private int roadWidth = 4; // TODO: confirm correct width when we have the sprite
     private SpriteRenderer rend;
 
 
@@ -86,7 +86,7 @@ public class PlayerManager : MonoBehaviour
             rend.color = Color.white;
         }
 
-        // movement
+        // --- Movement ---
         if (IsSlipping)
         {
             return;
@@ -111,7 +111,13 @@ public class PlayerManager : MonoBehaviour
             objectPosition.x = -roadWidth;
         }
 
-        // resources
+        // TODO: 
+        // if (objectPosition.x > smallerRoadWidth)
+        // {
+        //     speedScale -= enoughToSlowDown;
+        // }
+
+        // --- Resources ---
         // decrease gas over time
         Gas -= Time.deltaTime * 1;
         if(Gas < 0)
@@ -128,7 +134,7 @@ public class PlayerManager : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         // translates the latest input to vehicle direction
-        Direction = context.ReadValue<Vector2>();
+        Direction = new Vector2(context.ReadValue<Vector2>().x, 0);
     }
 
     /// <summary>
