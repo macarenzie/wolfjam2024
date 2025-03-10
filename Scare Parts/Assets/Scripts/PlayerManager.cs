@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private CollisionManager collison;
 
     private Vector3 objectPosition; // initialized in Start() via transform
-    private int roadWidth = 8; // TODO: confirm correct width when we have the sprite
+    private int roadWidth = 4; // TODO: confirm correct width when we have the sprite
     private SpriteRenderer rend;
 
 
