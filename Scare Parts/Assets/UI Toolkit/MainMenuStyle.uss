@@ -27,3 +27,28 @@
     scale: 1.1 1.1;
     -unity-background-image-tint-color: rgb(255, 181, 216);
 }
+
+.xButton {
+    width: 30px;
+    height: 30px;
+    font-size: 60px;
+    transition-duration: 0.35s;
+    background-image: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    position: absolute;
+}
+
+.textField {
+    font-size: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 0;
+}
