@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Enemy
   - Obstacle
-  - Background
   - Manager
   layers:
   - Default

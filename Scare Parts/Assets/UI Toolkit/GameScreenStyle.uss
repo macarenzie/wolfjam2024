@@ -1,7 +1,7 @@
 .HealthBar {
     width: 250px;
     rotate: -90deg;
-    scale: 1 4;
+    scale: 1 2;
 }
 
 .FuelGaugeBackground {
