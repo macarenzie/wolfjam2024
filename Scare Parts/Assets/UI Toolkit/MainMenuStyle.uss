@@ -16,12 +16,42 @@
     margin-bottom: -9px;
     font-size: 48px;
     transition-duration: 0.35s;
-    background-image: none;
     color: rgb(224, 224, 224);
-    background-color: rgb(79, 79, 79);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .button:hover {
     scale: 1.1 1.1;
-    -unity-background-image-tint-color: rgb(255, 181, 216);
+}
+
+.largeButton {
+    background-image: url('project://database/Assets/Sprites/UI/LargeButton.png?fileID=2800000&guid=2559845453ef623428071594b3fd6636&type=3#LargeButton');
+}
+
+.largeButton:hover {
+    background-image: url('project://database/Assets/Sprites/UI/LargeButtonHover.png?fileID=2800000&guid=5caad6e371d02f64f942b04bff3cdad4&type=3#LargeButtonHover');
+}
+
+.smallButtonV1 {
+    background-image: url('project://database/Assets/Sprites/UI/SmallButtonV1.png?fileID=2800000&guid=4a6d54eed14ac7b409bed44fb8524d98&type=3#SmallButtonV1');
+}
+
+.smallButtonV1:hover {
+    background-image: url('project://database/Assets/Sprites/UI/SmallButtonV1Hover.png?fileID=2800000&guid=4ae95170c33fe8940aea64b00a827f5a&type=3#SmallButtonV1Hover');
+}
+
+.smallButtonV2 {
+    background-image: url('project://database/Assets/Sprites/UI/SmallButtonV2.png?fileID=2800000&guid=326b9f12256138d449b74da9b6f07b4a&type=3#SmallButtonV2');
+}
+
+.smallButtonV2:hover {
+    background-image: url('project://database/Assets/Sprites/UI/SmallButtonV2Hover.png?fileID=2800000&guid=c3ca5ec72658024448db5c8432133b52&type=3#SmallButtonV2Hover');
+}
+
+.mediumButton {
+    background-image: url('project://database/Assets/Sprites/UI/MediumButton.png?fileID=2800000&guid=6d4cec7f6ac664140b372450c0b5501d&type=3#MediumButton');
+}
+
+.mediumButton:hover {
+    background-image: url('project://database/Assets/Sprites/UI/MediumButtonHover.png?fileID=2800000&guid=e4047d5dd22b41749ac3f2f2843377c4&type=3#MediumButtonHover');
 }
