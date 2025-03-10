@@ -81,7 +81,7 @@ public class PlayerManager : MonoBehaviour
     {
         rend = gameObject.GetComponent<SpriteRenderer>();
 
-        objectPosition = transform.position;
+        ObjectPosition = transform.position;
     }
 
     // Update is called once per frame
