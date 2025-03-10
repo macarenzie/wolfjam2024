@@ -36,12 +36,12 @@ public class LevelManager : MonoBehaviour
         if(player.BoostCurrent >= 100)
         {
             player.BoostIncrease = false;
-            speedScaleFactor += 1;
+            speedScaleFactor = 2;
         }
         else if(player.BoostCurrent <= 0)
         {
             player.BoostIncrease = true;
-            speedScaleFactor -= 1;
+            speedScaleFactor = 1;
         }
     }
 }
