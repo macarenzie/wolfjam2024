@@ -1,9 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI%20Toolkit/WinAndLoseStyle.uss?fileID=7433441132597879392&amp;guid=b33572961b7488143a09927fe2620ee6&amp;type=3#WinAndLoseStyle" />
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=03c2a81ad6370d442b84d856c7d1d7a2&amp;type=3#MainMenuStyle" />
     <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgb(131, 126, 168);">
-        <ui:Label tabindex="-1" text="You Win!" display-tooltip-when-elided="true" name="TitleLabel" class="titleLabel" />
+        <ui:Label tabindex="-1" text="You Win!" display-tooltip-when-elided="true" name="TitleLabel" class="titleLabel" style="margin-bottom: -15px;" />
         <ui:Label tabindex="-1" text="You escaped the Hand Hook Car Man&#10;and regained your souls!" display-tooltip-when-elided="true" name="SubtitleLabel" class="subtitleLabel" />
-        <ui:Button text="Play Again" display-tooltip-when-elided="true" name="PlayAgainButton" class="button" />
-        <ui:Button text="Quit" display-tooltip-when-elided="true" name="QuitButton" class="button" />
+        <ui:Button text="Play Again" display-tooltip-when-elided="true" name="PlayAgainButton" class="largeButton button" style="font-size: 60px; margin-top: 51px;" />
+        <ui:Button text="Quit" display-tooltip-when-elided="true" name="QuitButton" class="smallButtonV2 button" />
     </ui:VisualElement>
 </ui:UXML>
