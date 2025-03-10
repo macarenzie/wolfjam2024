@@ -1613,7 +1613,7 @@ GameObject:
   - component: {fileID: 910729206}
   m_Layer: 0
   m_Name: gameRoad
-  m_TagString: Untagged
+  m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2040,6 +2040,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8774502337025146493, guid: 6175a357e9a662542b2096fc243fc431, type: 3}
+      propertyPath: lm
+      value: 
+      objectReference: {fileID: 1932816010}
     - target: {fileID: 6841083999984978346, guid: 6175a357e9a662542b2096fc243fc431, type: 3}
       propertyPath: m_Name
       value: Cryptid
@@ -3053,6 +3057,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8684016554708225197, guid: 0215cdb3715c3254f8c2f5c0a504bead, type: 3}
+      propertyPath: lm
+      value: 
+      objectReference: {fileID: 1932816010}
     - target: {fileID: 1874481181141177184, guid: 0215cdb3715c3254f8c2f5c0a504bead, type: 3}
       propertyPath: m_Name
       value: Puddle
@@ -3181,7 +3189,7 @@ GameObject:
   - component: {fileID: 1399386609}
   m_Layer: 0
   m_Name: gameRoad (1)
-  m_TagString: Untagged
+  m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3349,6 +3357,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8684016554708225197, guid: 0215cdb3715c3254f8c2f5c0a504bead, type: 3}
+      propertyPath: lm
+      value: 
+      objectReference: {fileID: 1932816010}
     - target: {fileID: 1874481181141177184, guid: 0215cdb3715c3254f8c2f5c0a504bead, type: 3}
       propertyPath: m_Name
       value: Puddle (10)
@@ -4037,6 +4049,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8684016554708225197, guid: 5118126d2ebc8544f924c510e3e4eed0, type: 3}
+      propertyPath: lm
+      value: 
+      objectReference: {fileID: 1932816010}
     - target: {fileID: 1874481181141177184, guid: 5118126d2ebc8544f924c510e3e4eed0, type: 3}
       propertyPath: m_Name
       value: Log
@@ -4412,7 +4428,7 @@ GameObject:
   - component: {fileID: 1932816013}
   m_Layer: 0
   m_Name: Manager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4429,6 +4445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32759e5bd93f0014aa30f703a4c1ba17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 5550392107891649472}
 --- !u!114 &1932816011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4588,6 +4605,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
+      value: 933353ca-5907-4a00-849d-407bba498bbf
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
+      value: Player/Boost[/Keyboard/b]
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1932816011}
@@ -4595,6 +4632,26 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1932816011}
+    - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5550392107891649472}
+    - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnBoost
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 9096499405316064621, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -4701,6 +4758,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8684016554708225197, guid: 5ff4b7eb6b7d09f4cb7eb643196f899e, type: 3}
+      propertyPath: lm
+      value: 
+      objectReference: {fileID: 1932816010}
     - target: {fileID: 1874481181141177184, guid: 5ff4b7eb6b7d09f4cb7eb643196f899e, type: 3}
       propertyPath: m_Name
       value: Obstacle
