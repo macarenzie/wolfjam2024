@@ -9,11 +9,19 @@ using UnityEngine;
 /// </summary>
 public class GameObjectMovement : MonoBehaviour
 {
-    // fields
-    [SerializeField] private float movementFactor = 0.5f;
+    // === FIELDS ===
 
-    // movement fields
+    [SerializeField] private float movementFactor = 0.5f;
     [SerializeField] private Transform transform;
+
+    private LevelManager lm;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        lm = GameObject.FindGameObjectWithTag("Manager").GetComponent<LevelManager>();
+    }
 
     /// <summary>
     /// Move the object based on a specified movement and time
@@ -21,7 +29,7 @@ public class GameObjectMovement : MonoBehaviour
     void Update()
     {
         Vector3 newPos = transform.localPosition;
-        newPos.y -= Time.deltaTime * movementFactor;
+        newPos.y -= Time.deltaTime * movementFactor * lm.SpeedScaleFactor;
 
         transform.localPosition = newPos;
     }
