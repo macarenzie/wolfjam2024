@@ -25,6 +25,20 @@ public class PlayerManager : MonoBehaviour
 
     // === PROPERTIES ===
 
+    public float BoostCurrent
+    {
+        get { return boostCurrent; }
+        set { boostCurrent = value; }
+    }
+    public float boostCurrent = 0;
+
+    public bool BoostIncrease
+    {
+        get { return boostIncrease; }
+        set { boostIncrease = value; }
+    }
+    private bool boostIncrease = true;
+
     public float Health
     {
         get { return _health; }
@@ -119,6 +133,11 @@ public class PlayerManager : MonoBehaviour
             SceneManager.LoadScene("LoseScene");
         }
         //Debug.Log(Gas);
+
+        if (!BoostIncrease)
+        {
+            boostCurrent--;
+        }
     }
 
     /// <summary>
@@ -154,6 +173,18 @@ public class PlayerManager : MonoBehaviour
         if (Gas < 0 || Health < 0)
         {
             SceneManager.LoadScene("LoseScene");
+        }
+    }
+
+    /// <summary>
+    /// InputAction.CallbackContext context
+    /// Add to the boost meter
+    /// </summary>
+    public void OnBoost()
+    {
+        if (boostIncrease)
+        {
+            boostCurrent++; 
         }
     }
 }

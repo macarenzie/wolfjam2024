@@ -4,6 +4,23 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    // === FIELDS ===
+
+    [SerializeField] private PlayerManager player;
+
+    private float boostTotal = 100;
+
+
+    // === PROPERTIES ===
+
+    public float SpeedScaleFactor
+    {
+        get { return speedScaleFactor; }
+        set { speedScaleFactor = value; }
+    }
+    private float speedScaleFactor = 1;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +31,17 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         // if health is 0, end game
-        // if gas is 0, end game
+
+        // if boost
+        if(player.BoostCurrent >= 100)
+        {
+            player.BoostIncrease = false;
+            speedScaleFactor += 1;
+        }
+        else if(player.BoostCurrent <= 0)
+        {
+            player.BoostIncrease = true;
+            speedScaleFactor -= 1;
+        }
     }
 }
