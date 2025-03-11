@@ -30,6 +30,7 @@ public class PlayerCollisionManager : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D collision)
+        // testing
     {
         switch (collision.gameObject.tag)
         {
