@@ -30,19 +30,18 @@ public class PlayerCollisionManager : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D collision)
-        // make the player red
     {
         switch (collision.gameObject.tag)
         {
             case "Obstacle":
-                playerManager.Health -= 10;
+                playerManager.ResourceChange(true, -10);
                 redCooldown = 1;
                 rend.color = Color.red;
                 Debug.Log("you hit an OBSTACLE!");
                 break;
 
             case "Enemy":
-                playerManager.Health -= 15;
+                playerManager.ResourceChange(true, -15);
                 redCooldown = 1;
                 rend.color = Color.red;
                 Debug.Log("you hit an ENEMY!");
