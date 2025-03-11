@@ -20,7 +20,6 @@ public class DylanCollisions : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-
         switch (collision.gameObject.tag) {
             case "Obstacle":
                 playerManager.Health -= 10;
