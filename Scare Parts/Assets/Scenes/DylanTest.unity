@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 1932816015}
   m_Layer: 0
   m_Name: Manager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -649,6 +649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32759e5bd93f0014aa30f703a4c1ba17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 5550392107891649472}
 --- !u!114 &1932816011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -738,11 +739,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectTypes:
-  - {fileID: 6841083999984978346, guid: 6175a357e9a662542b2096fc243fc431, type: 3}
-  - {fileID: 1874481181141177184, guid: 5118126d2ebc8544f924c510e3e4eed0, type: 3}
-  - {fileID: 1874481181141177184, guid: 0215cdb3715c3254f8c2f5c0a504bead, type: 3}
-  - {fileID: 1874481181141177184, guid: 5ff4b7eb6b7d09f4cb7eb643196f899e, type: 3}
   - {fileID: 1984666010903929847, guid: 1df4dabc05e9dfe47aaff4908ce69b5e, type: 3}
+  - {fileID: 1874481181141177184, guid: 5ff4b7eb6b7d09f4cb7eb643196f899e, type: 3}
 --- !u!1001 &5550392107891649469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -754,7 +752,11 @@ PrefabInstance:
     - target: {fileID: 1891997846907894171, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
       propertyPath: collison
       value: 
-      objectReference: {fileID: 5550392107891649474}
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348929110096381240, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: playerManager
+      value: 
+      objectReference: {fileID: 5550392107891649472}
     - target: {fileID: 5468896539589195168, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -762,6 +764,18 @@ PrefabInstance:
     - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
       propertyPath: m_Camera
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
+      value: 933353ca-5907-4a00-849d-407bba498bbf
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
+      value: Player/Boost[/Keyboard/b]
       objectReference: {fileID: 0}
     - target: {fileID: 5953195549547475345, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -830,10 +844,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5468896539589195168, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5550392107891649474}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
 --- !u!1 &5550392107891649470 stripped
 GameObject:
@@ -851,22 +862,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80951cbf8cf3e25489a830d1dfafe1fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5550392107891649474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5550392107891649470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1415be4f0b9c07447810d4d778de4947, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 5550392107891649470}
-  bulletManager: {fileID: 1932816011}
-  playerManager: {fileID: 5550392107891649472}
-  cam: {fileID: 1336106174}
-  capturedSpirit: {fileID: 21300000, guid: b7a81212fdd795f4b8dcd20131663a21, type: 3}
-  capturedCryptid: {fileID: 21300000, guid: c26eaca63ae4ed849bf31bfd71996ea2, type: 3}
-  isHit: 0

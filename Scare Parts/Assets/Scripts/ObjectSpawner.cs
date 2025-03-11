@@ -49,7 +49,7 @@ public class ObjectSpawner : MonoBehaviour
         if (timer < 0)
         {
             location = new Vector2(Random.Range(-3, 3), 15);
-            Objects.Add(Instantiate(objectTypes[Random.Range(0, 5)], location, Quaternion.identity));
+            Objects.Add(Instantiate(objectTypes[Random.Range(0, objectTypes.Count)], location, Quaternion.identity));
             timer = 1.0f;
         }
     }

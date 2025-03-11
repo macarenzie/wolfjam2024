@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CollisionManager : MonoBehaviour
+public class OldCollisionManager : MonoBehaviour
 {
     // == FIELDS ===
 
