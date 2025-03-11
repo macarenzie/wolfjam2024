@@ -771,6 +771,14 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1932816011}
+    - target: {fileID: 8796650582670296706, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 5550392107891649470}
+    - target: {fileID: 8796650582670296706, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: playerManager
+      value: 
+      objectReference: {fileID: 5550392107891649472}
     - target: {fileID: 9096499405316064621, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
       propertyPath: m_RootOrder
       value: 4

@@ -5,9 +5,7 @@ using UnityEngine;
 public class DylanCollisions : MonoBehaviour
 {
     // === FIELDS ===
-
-
-
+    [SerializeField] private PlayerManager playerManager;
 
     // Start is called before the first frame update
     void Start()
@@ -21,16 +19,21 @@ public class DylanCollisions : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D collision)
-
     {
 
-        // Access information about the colliding object using 'collision' [2, 5, 12]
+        switch (collision.gameObject.tag) {
+            case "Obstacle":
+                playerManager.Health -= 10;
+                Debug.Log("you hit an OBSTACLE!");
+                break;
 
-        Debug.Log("Collision with: " + collision.gameObject.name);
+            case "Enemy":
+                playerManager.Health -= 15;
+                Debug.Log("you hit an ENEMY!");
+                break;
 
-
-
-        // Implement your collision response logic here, like playing a sound, applying force, etc [5, 12, 16]. 
-
+            default:
+                break;
+        }
     }
 }
