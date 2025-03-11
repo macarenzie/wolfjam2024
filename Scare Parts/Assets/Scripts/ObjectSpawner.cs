@@ -40,6 +40,7 @@ public class ObjectSpawner : MonoBehaviour
                 Destroy(Objects[i]);
                 Objects.RemoveAt(i);
                 i--;
+                continue;
             }
         }
     }
