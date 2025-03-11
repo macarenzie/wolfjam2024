@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DylanCollisions : MonoBehaviour
+public class PlayerCollisionManager : MonoBehaviour
 {
     // === FIELDS ===
     [SerializeField] private PlayerManager playerManager;
