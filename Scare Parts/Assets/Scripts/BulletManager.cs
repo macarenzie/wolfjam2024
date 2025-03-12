@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -11,16 +12,16 @@ public class BulletManager : MonoBehaviour
 {
     // === FIELDS ===
 
-    private GameObject gun;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject bullet;
-    private float speed = 6.0f;
-    private float timer = 0.0f;
-
     [SerializeField] private Sprite cryptidBullet;
     [SerializeField] private Sprite spiritGun;
     [SerializeField] private Sprite cryptidGun;
     [SerializeField] private Sprite spiritBullet;
+
+    private GameObject gun;
+    private float speed = 6.0f;
+    private float timer = 0.0f;
 
 
     // === PROPERTIES ===
@@ -55,14 +56,16 @@ public class BulletManager : MonoBehaviour
 
         for (int i = 0; i < bullets.Count; i++)
         {
+            // move the bullets
             bullets[i].transform.Translate(Vector3.up * speed * Time.deltaTime);
         
-            //if (bullets[i].GetComponent<SpriteRenderer>().bounds.center.y < -10)
-            //{
-            //    Destroy(bullets[i]);
-            //    bullets.RemoveAt(i);
-            //    i--;
-            //}
+            // delete bullets if they go out of bounds
+            if (bullets[i].GetComponent<SpriteRenderer>().bounds.center.y > 10)
+            {
+                Destroy(bullets[i]);
+                bullets.RemoveAt(i);
+                i--;
+            }
         }
     }
 
@@ -72,6 +75,7 @@ public class BulletManager : MonoBehaviour
     /// </summary>
     public void OnFire()
     {
+        // limit bullets to once every 0.3 seconds
         if (timer < 0.0f)
         {
             bullets.Add(Instantiate(bullet, player.GetComponent<SpriteRenderer>().bounds.center, Quaternion.identity));

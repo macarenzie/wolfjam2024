@@ -5,15 +5,24 @@ using UnityEngine;
 public class BulletCollisionManager : MonoBehaviour
 {
     // ===  FIELDS ===
-    [SerializeField] private BulletManager bulletManager;
-    [SerializeField] private ObjectSpawner spawner;
+    private BulletManager bulletManager;
+    private ObjectSpawner spawner;
+    private List <GameObject> bulletList;
+    private List <GameObject> enemyList;
+    private GameObject tempBullet;
+    private GameObject tempEnemy;
 
 
     // === METHODS ===
     // Start is called before the first frame update
     void Start()
     {
-        
+        // IF THE NAME OF BULLET MANAGER IS CHANGED, YOU NEED TO CHANGE IT HERE TOO
+        bulletManager = GameObject.Find("Manager").GetComponent<BulletManager>();
+        spawner = GameObject.Find("Manager").GetComponent<ObjectSpawner>();
+
+        bulletList = bulletManager.bullets;
+        enemyList = spawner.Objects;
     }
 
     // Update is called once per frame
@@ -24,47 +33,45 @@ public class BulletCollisionManager : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // THIS IS BROKEN! I KEEP GETTING AN OUT OF BOUNDS ERROR!!!
-        //if (collision.gameObject.tag == "Enemy")
-        //{
-        //    Debug.Log("yasssss");
-        //    Destroy(collision.gameObject);
-        //
-        //    for (int i = 0; i < spawner.Objects.Count; i++)
-        //    {
-        //        if (spawner.Objects[i] == gameObject)
-        //        {
-        //            Destroy(spawner.Objects[i]);
-        //            spawner.Objects.RemoveAt(i);
-        //            i--;
-        //            continue;
-        //        }
-        //    }
-        //
-        //    for (int i = 0; i < bulletManager.bullets.Count; i++)
-        //    {
-        //        if (bulletManager.bullets[i] == gameObject)
-        //        {
-        //            Destroy(bulletManager.bullets[i]);
-        //            bulletManager.bullets.RemoveAt(i);
-        //            i--;
-        //            continue;
-        //        }
-        //    }
-        //}
-        //
-        //else if (collision.gameObject.tag != "Player")
-        //{
-        //    for (int i = 0; i < bulletManager.bullets.Count; i++)
-        //    {
-        //        if (bulletManager.bullets[i] == gameObject)
-        //        {
-        //            Destroy(bulletManager.bullets[i]);
-        //            bulletManager.bullets.RemoveAt(i);
-        //            i--;
-        //            continue;
-        //        }
-        //    }
-        //}
+        // if bullet collides with enemy: destroy bullet AND enemy
+        if (collision.gameObject.tag == "Enemy")
+        {
+            // destroy bullet
+            for (int i = 0; i < bulletList.Count; i++)
+            {
+                if (bulletList[i] == gameObject)
+                {
+                    Destroy(bulletList[i]);
+                    bulletList.RemoveAt(i);
+                    i--;
+                }
+            }
+            
+            // destroy enemy
+            for (int i = 0; i < enemyList.Count; i++)
+            {
+                if (enemyList[i] == collision.gameObject)
+                {
+                    Destroy(enemyList[i]);
+                    enemyList.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+        
+        // if colliding with anything else: destroy bullet
+        else if (collision.gameObject.tag != "Player")
+        {
+            // destroy bullet
+            for (int i = 0; i < bulletList.Count; i++)
+            {
+                if (bulletList[i] == gameObject)
+                {
+                    Destroy(bulletList[i]);
+                    bulletList.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
     }
 }
