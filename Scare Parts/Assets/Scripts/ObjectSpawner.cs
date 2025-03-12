@@ -5,7 +5,11 @@ using UnityEngine;
 public class ObjectSpawner : MonoBehaviour
 {
     // === FIELDS ===
+
     [SerializeField] List<GameObject> objectTypes = new List<GameObject>();
+    [SerializeField] private float upperBound;
+    [SerializeField] private float lowerBound;
+    [SerializeField] private float clock;
     private float timer = 1.0f;
     private Vector2 location;
     private GameObject obj;
@@ -49,9 +53,9 @@ public class ObjectSpawner : MonoBehaviour
     {
         if (timer < 0)
         {
-            location = new Vector2(Random.Range(-3, 3), 15);
+            location = new Vector2(Random.Range(lowerBound, upperBound), 15);
             Objects.Add(Instantiate(objectTypes[Random.Range(0, objectTypes.Count)], location, Quaternion.identity));
-            timer = 1.0f;
+            timer = clock;
         }
     }
 }
