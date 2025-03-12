@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float redCooldown = 1;
     //[SerializeField] private OldCollisionManager collison;
 
-    private int roadWidth = 4;
+    private int roadWidth = 8;
     private SpriteRenderer rend;
 
 
@@ -149,7 +149,7 @@ public class PlayerManager : MonoBehaviour
 
         if (!BoostIncrease)
         {
-            boostCurrent--;
+            boostCurrent-=0.25f;
         }
     }
 
