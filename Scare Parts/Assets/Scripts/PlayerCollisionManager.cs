@@ -7,12 +7,15 @@ public class PlayerCollisionManager : MonoBehaviour
     // === FIELDS ===
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private float redCooldown = 1;
+    [SerializeField] private ObjectSpawner spawner;
+    private List<GameObject> enemyList;
     private SpriteRenderer rend;
 
     // Start is called before the first frame update
     void Start()
     {
         rend = gameObject.GetComponent<SpriteRenderer>();
+        enemyList = spawner.Objects;
     }
 
     // Update is called once per frame
@@ -45,6 +48,17 @@ public class PlayerCollisionManager : MonoBehaviour
                 redCooldown = 1;
                 rend.color = Color.red;
                 Debug.Log("you hit an ENEMY!");
+
+                // delete enemy
+                for (int i = 0; i < enemyList.Count; i++)
+                {
+                    if (enemyList[i] == collision.gameObject)
+                    {
+                        Destroy(enemyList[i]);
+                        enemyList.RemoveAt(i);
+                        i--;
+                    }
+                }
                 break;
 
             default:
