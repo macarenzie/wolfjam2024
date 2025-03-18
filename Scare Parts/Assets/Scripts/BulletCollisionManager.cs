@@ -6,7 +6,7 @@ public class BulletCollisionManager : MonoBehaviour
 {
     // ===  FIELDS ===
     private BulletManager bulletManager;
-    private ObjectSpawner spawner;
+    private LevelLoader spawner;
     private List <GameObject> bulletList;
     private List <GameObject> enemyList;
     private GameObject tempBullet;
@@ -19,7 +19,7 @@ public class BulletCollisionManager : MonoBehaviour
     {
         // IF THE NAME OF BULLET MANAGER IS CHANGED, YOU NEED TO CHANGE IT HERE TOO
         bulletManager = GameObject.Find("Manager").GetComponent<BulletManager>();
-        spawner = GameObject.Find("Manager").GetComponent<ObjectSpawner>();
+        spawner = GameObject.Find("Manager").GetComponent<LevelLoader>();
 
         bulletList = bulletManager.bullets;
         enemyList = spawner.Objects;

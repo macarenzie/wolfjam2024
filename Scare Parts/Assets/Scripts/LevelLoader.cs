@@ -16,7 +16,7 @@ public class LevelLoader : MonoBehaviour
     private int count = 0;
     private string[] lines;
     private GameObject[,] lanes;
-    private float timer = 1.0f;
+    private float timer = 1.5f;
     private Vector2[] spawnLocations = new Vector2[5]; // [0] is lane 0, [1] is lane 1, etc.
     private GameObject obj;
 
@@ -112,7 +112,7 @@ public class LevelLoader : MonoBehaviour
                }
             }
 
-            timer = 1;
+            timer = 1.5f;
             count++;
             Debug.Log(count);
         }
