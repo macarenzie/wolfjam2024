@@ -8,4 +8,12 @@
         <ui:Button text="Quit" display-tooltip-when-elided="true" name="QuitButton" class="button smallButtonV2" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
         <ui:Button text="Connect to&#10; Twitch" display-tooltip-when-elided="true" name="TwitchButton" class="button mediumButton" style="top: 599px; position: absolute; left: 1337px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
     </ui:VisualElement>
+    <ui:VisualElement name="TwitchMenuContainer" style="background-color: rgb(202, 202, 202); position: absolute; width: 50%; left: 25%; height: 50%; top: 25%; display: none;">
+        <ui:Button text="X" display-tooltip-when-elided="true" name="CloseButton" class="xButton" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-self: flex-end; width: 30px; height: 30px; position: absolute; font-size: 22px;" />
+        <ui:Label tabindex="-1" text="Twitch Connection" display-tooltip-when-elided="true" name="TwitchTitle" class="titleLabel" style="font-size: 46px; margin-bottom: 56px; margin-top: 1px; top: 30px;" />
+        <ui:TextField picking-mode="Ignore" label="Channel Name:" name="ChannelNameTextField" class="textField" />
+        <ui:TextField picking-mode="Ignore" label="OauthToken:" name="OauthTokenTextField" class="textField" />
+        <ui:TextField picking-mode="Ignore" label="Client ID:" name="ClientIDTextField" class="textField" />
+        <ui:Button text="Confirm" display-tooltip-when-elided="true" name="ConfirmButton" class="button" style="width: 34%; height: 19%; top: auto;" />
+    </ui:VisualElement>
 </ui:UXML>
