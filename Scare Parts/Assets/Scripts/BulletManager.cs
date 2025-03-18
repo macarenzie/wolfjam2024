@@ -20,8 +20,9 @@ public class BulletManager : MonoBehaviour
     [SerializeField] private Sprite spiritBullet;
 
     private GameObject gun;
-    private float speed = 6.0f;
+    private float speed = 8.0f;
     private float timer = 0.0f;
+    private Vector3 offset = new Vector3(0, 3.3f, 0);
 
 
     // === PROPERTIES ===
@@ -78,7 +79,7 @@ public class BulletManager : MonoBehaviour
         // limit bullets to once every 0.3 seconds
         if (timer < 0.0f)
         {
-            bullets.Add(Instantiate(bullet, player.GetComponent<SpriteRenderer>().bounds.center, Quaternion.identity));
+            bullets.Add(Instantiate(bullet, player.GetComponent<SpriteRenderer>().bounds.center + offset, Quaternion.identity));
             timer = 0.3f;
         }
     }
