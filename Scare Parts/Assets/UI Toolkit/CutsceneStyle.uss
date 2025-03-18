@@ -15,15 +15,15 @@
 .continueText {
     position: absolute;
     -unity-font-style: bold;
-    background-color: rgba(204, 204, 204, 0.24);
+    background-color: rgba(125, 209, 146, 0.58);
     border-top-left-radius: 18px;
     border-bottom-left-radius: 18px;
     border-top-right-radius: 18px;
     border-bottom-right-radius: 18px;
-    border-left-color: rgba(0, 0, 0, 0.47);
-    border-right-color: rgba(0, 0, 0, 0.47);
-    border-top-color: rgba(0, 0, 0, 0.47);
-    border-bottom-color: rgba(0, 0, 0, 0.47);
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
     border-left-width: 4px;
     border-right-width: 4px;
     border-top-width: 4px;
@@ -32,11 +32,10 @@
     padding-right: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
-    font-size: 45px;
+    font-size: 37px;
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
     right: 0;
-    bottom: 0;
 }
