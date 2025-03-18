@@ -7,11 +7,17 @@ using UnityEngine.UIElements;
 
 public class Slideshow : MonoBehaviour
 {
+    // === Fields ===
+
     [SerializeField] Texture[] imageArray;
     private int currentImage;
 
     private UIDocument document;
     private Button button;
+    private VisualElement container;
+
+
+    // === Methods ===
 
     /// <summary>
     /// setting up the button to switch the image
@@ -22,24 +28,15 @@ public class Slideshow : MonoBehaviour
 
         button = document.rootVisualElement.Q("NextButton") as Button;
         button.RegisterCallback<ClickEvent>(NextImage);
+
+        container = document.rootVisualElement.Q("Container") as VisualElement;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         currentImage = 0;
-    }
-
-    /// <summary>
-    /// putting the image on the screen
-    /// </summary>
-    void OnGUI()
-    {
-        int w = Screen.width, h = Screen.height;
-
-        Rect imageRect = new Rect(0, 0, w, h);
-
-        GUI.DrawTexture(imageRect, imageArray[currentImage]);
+        container.style.backgroundImage = (StyleBackground)imageArray[currentImage];
     }
 
     /// <summary>
@@ -50,6 +47,7 @@ public class Slideshow : MonoBehaviour
         if (currentImage < imageArray.Length - 1)
         {
             currentImage++;
+            container.style.backgroundImage = (StyleBackground)imageArray[currentImage];
         }
         else
         {
