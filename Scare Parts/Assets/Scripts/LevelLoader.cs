@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEditor.FilePathAttribute;
 
 public class LevelLoader : MonoBehaviour
 {
     // === FIELDS ===
-    //[SerializeField] List<GameObject> objectTypes = new List<GameObject>();
+    [SerializeField] List<GameObject> objectTypes = new List<GameObject>();
     [SerializeField] private TextAsset level;
-    [SerializeField] private float clock;
 
     private string originalText;
+    private int count = 0;
     private string[] lines;
-    private List<List<char>> lanes = new List<List<char>>();
+    private GameObject[,] lanes;
     private float timer = 1.0f;
     private Vector2[] spawnLocations = new Vector2[5]; // [0] is lane 0, [1] is lane 1, etc.
     private GameObject obj;
@@ -30,15 +33,31 @@ public class LevelLoader : MonoBehaviour
     {
         originalText = level.text;
         lines = level.text.Split('\n');
+        lanes = new GameObject[lines.Length, 5];
         LevelToLane();
 
         // assign spawn locations
-        spawnLocations[0] = new Vector2(-7.43f, 0);
-        for (int i = 1; i < spawnLocations.Length; i++)
+        for (int i = 0; i < spawnLocations.Length; i++)
         {
-            spawnLocations[i] = new Vector2(spawnLocations[0].x + (i * 3.71f), 15);
+            spawnLocations[i] = new Vector2(-7.43f + (i * 3.71f), 15);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        timer -= Time.deltaTime;
+
+        if(count < lines.Length)
+        {
+            Spawn();
+        }
+        else if (Objects.Count == 0)
+        {
+            SceneManager.LoadScene("WinScene");
         }
 
+        // destroy of bounds obstacles
         for (int i = 0; i < Objects.Count; i++)
         {
             if (Objects[i].GetComponent<SpriteRenderer>().bounds.center.y < -10)
@@ -51,19 +70,31 @@ public class LevelLoader : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void LevelToLane()
     {
+        // assign obstacles to their lanes
         for (int i = 0; i < lines.Length; i++)
         {
             for (int j = 0; j < 5; j++)
             {
-                lanes[j].Add(lines[i][j]);
+                switch (lines[i][j])
+                {
+                    // obstacle
+                    case '0':
+                        lanes[i,j] = objectTypes[0];
+                        //lanes[i].Add(objectTypes[0]);
+                        break;
+                    // enemy
+                    case '1':
+                        lanes[i,j] = objectTypes[1];
+                        //lanes[i].Add(objectTypes[1]);
+                        break;
+                    // null
+                    default:
+                        lanes[i,j] = null;
+                        //lanes[i].Add(null);
+                        break;
+                }
             }
         }
     }
@@ -74,10 +105,16 @@ public class LevelLoader : MonoBehaviour
         {
             for(int i = 0; i < 5; i++)
             {
+               // if there is an object in the lane, spawn it in
+               if (lanes[count,i] != null)
+               {
+                   Objects.Add(Instantiate(lanes[count,i], spawnLocations[i], Quaternion.identity));
+               }
             }
-            //location = new Vector2(Random.Range(lowerBound, upperBound), 15);
-            //Objects.Add(Instantiate(objectTypes[Random.Range(0, objectTypes.Count)], location, Quaternion.identity));
-            //timer = clock;
+
+            timer = 1;
+            count++;
+            Debug.Log(count);
         }
     }
 }
