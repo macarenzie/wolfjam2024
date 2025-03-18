@@ -11,3 +11,32 @@
     background-color: rgba(172, 172, 172, 0);
     color: rgb(255, 255, 255);
 }
+
+.continueText {
+    position: absolute;
+    -unity-font-style: bold;
+    background-color: rgba(204, 204, 204, 0.24);
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border-left-color: rgba(0, 0, 0, 0.47);
+    border-right-color: rgba(0, 0, 0, 0.47);
+    border-top-color: rgba(0, 0, 0, 0.47);
+    border-bottom-color: rgba(0, 0, 0, 0.47);
+    border-left-width: 4px;
+    border-right-width: 4px;
+    border-top-width: 4px;
+    border-bottom-width: 4px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 45px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    right: 0;
+    bottom: 0;
+}
