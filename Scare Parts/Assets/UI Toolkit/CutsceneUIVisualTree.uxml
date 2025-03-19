@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/CutsceneStyle.uss?fileID=7433441132597879392&amp;guid=3d9256f4f967ee145b0ad07b044e92cc&amp;type=3#CutsceneStyle" />
-    <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); overflow: visible;">
+    <ui:VisualElement name="Container" style="flex-grow: 1; overflow: visible;">
+        <ui:Label tabindex="-1" text="Click anywhere to continue..." display-tooltip-when-elided="true" name="ContinueLabel" class="continueText" />
         <ui:Button display-tooltip-when-elided="true" name="NextButton" class="button" style="visibility: visible; display: flex; overflow: visible; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; height: 100%; width: 100%;" />
     </ui:VisualElement>
 </ui:UXML>
