@@ -1,9 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/GameScreenStyle.uss?fileID=7433441132597879392&amp;guid=a8be1d0712cd84649aa9b3f2eeb10ad5&amp;type=3#GameScreenStyle" />
     <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-        <ui:VisualElement name="UIArea" class="UIArea" style="flex-wrap: wrap-reverse; flex-direction: row-reverse; width: 336px; left: 1645px;">
-            <ui:Label tabindex="-1" text="Health" display-tooltip-when-elided="true" name="HealthLabel" class="label" style="left: 55px; position: absolute;" />
-            <ui:ProgressBar value="57" name="HealthBar" class="HealthBar" style="position: absolute; width: 200px; left: 17px;" />
+        <ui:VisualElement name="HealthBarArea" class="HealthBarArea">
+            <ui:Label tabindex="-1" text="Health" display-tooltip-when-elided="true" name="HealthLabel" class="label" style="left: 21%; bottom: 16px;" />
+            <ui:ProgressBar value="57" name="HealthBar" class="VerticalProgressBar" style="position: absolute; width: 200px; left: 4%; bottom: 48%;" />
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:Label tabindex="-1" text="Boost" display-tooltip-when-elided="true" name="BoostLabel" class="label" style="position: absolute; left: 7%; bottom: 16%;" />
+    <ui:ProgressBar name="BoostBar" value="57" class="VerticalProgressBar" style="position: absolute; top: 54%; left: -2%; width: 469px; scale: 1 5;" />
 </ui:UXML>
