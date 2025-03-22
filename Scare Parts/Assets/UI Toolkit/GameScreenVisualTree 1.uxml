@@ -5,7 +5,7 @@
             <ui:Label tabindex="-1" text="Health" display-tooltip-when-elided="true" name="HealthLabel" class="label" style="left: 21%; bottom: 16px;" />
             <ui:ProgressBar value="57" name="HealthBar" class="VerticalProgressBar" style="position: absolute; width: 200px; left: 4%; bottom: 48%;" />
         </ui:VisualElement>
+        <ui:Label tabindex="-1" text="Boost" display-tooltip-when-elided="true" name="BoostLabel" class="label" style="position: absolute; left: 7%; bottom: 16%;" />
+        <ui:ProgressBar name="BoostBar" value="57" class="VerticalProgressBar" style="position: absolute; top: 54%; left: -2%; width: 469px; scale: 1 5;" />
     </ui:VisualElement>
-    <ui:Label tabindex="-1" text="Boost" display-tooltip-when-elided="true" name="BoostLabel" class="label" style="position: absolute; left: 7%; bottom: 16%;" />
-    <ui:ProgressBar name="BoostBar" value="57" class="VerticalProgressBar" style="position: absolute; top: 54%; left: -2%; width: 469px; scale: 1 5;" />
 </ui:UXML>
