@@ -80,6 +80,7 @@ public class BulletManager : MonoBehaviour
         if (timer < 0.0f)
         {
             bullets.Add(Instantiate(bullet, player.GetComponent<SpriteRenderer>().bounds.center + offset, Quaternion.identity));
+            AudioManager.instance.PlaySFX("Shoot");
             timer = 0.3f;
         }
     }

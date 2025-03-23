@@ -197,7 +197,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (boostIncrease)
         {
-            boostCurrent++; 
+            boostCurrent++;
         }
     }
 }
