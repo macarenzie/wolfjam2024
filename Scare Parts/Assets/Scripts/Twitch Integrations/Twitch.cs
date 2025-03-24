@@ -23,10 +23,10 @@ public class TwitchConnect : MonoBehaviour
     const string URL = "irc.chat.twitch.tv";
     const int PORT = 6667;
 
-    private string user = "k8ii3";
-    //from twitchapps.com/tmi (pls dont hack me)
-    private string oauth = "oauth:9o3kqvmifwks7z7eb1w5rdklxlt9v1";
-    private string channel = "k8ii3";
+    private string user;
+    //from https://twitchtokengenerator.com 
+    private string oauth;
+    private string channel;
 
     /// <summary>
     /// A function to Connect to Twitch
@@ -52,7 +52,7 @@ public class TwitchConnect : MonoBehaviour
     {
         pingCounter += Time.deltaTime; //count time
         //constantly reconnect
-        if (pingCounter > 60) 
+        if (pingCounter > 60)
         {
             Writer.WriteLine("PING " + URL);
             Writer.Flush();
@@ -67,14 +67,24 @@ public class TwitchConnect : MonoBehaviour
         if (TwitchTV.Available > 0)
         {
             string message = Reader.ReadLine();
-            if(message.Contains("PRIVMSG"))
+            if (message.Contains("PRIVMSG"))
             {
                 int splitPoint = message.IndexOf("!");
-                string chatter = message.Substring(1, splitPoint -1);
+                string chatter = message.Substring(1, splitPoint - 1);
                 splitPoint = message.IndexOf(":", 1);
                 string msg = message.Substring(splitPoint + 1);
 
-                OnChatMessage?.Invoke(chatter, msg);
+                Debug.Log($"[Twitch Message] {chatter}: {msg}");
+                if (OnChatMessage != null)
+                {
+                    Debug.Log("OnChatMessage is NOT null. Invoking...");
+                    OnChatMessage.Invoke(chatter, msg);
+                }
+                else
+                {
+                    Debug.LogWarning("OnChatMessage is NULL. Nothing to invoke.");
+                }
+
 
             }
             //print to unity console for debugging purposes

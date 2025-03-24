@@ -6,135 +6,84 @@ using UnityEngine;
 /// <summary>
 /// Name: Cmd Coldown
 /// Purpose: Set twitch command cooldowns to prevent event spamming and overloading the api
-/// Author(s): Katie Hellmann, GucioDevs Unity3D Quick Tips: Cooldown Timers
+/// Author(s): Katie Hellmann, GucioDevs Unity3D Quick Tips: Cooldown Timers, Gator Flack
 /// </summary>
 
 public class CmdCooldown : MonoBehaviour
 {
-    [SerializeField] BulletManager bulletManager;
-    private float shootCooldownTime;
-    private float switchCooldownTime;
-    private float testCooldownTime;
-    [SerializeField] private float _timeTilNextShoot = 5;
-    [SerializeField] private float _timeTilNextSwitch = 5;
-    [SerializeField] private float _timeTilNextTest = 1000;
+    [SerializeField] private int boostThreshold = 5; // Number of inputs required to trigger boost
+    private int boostCount = 0; // Tracks the number of `!boost` inputs
 
-    private bool canUseShoot;
-    private bool canUseSwitch;
-    private bool canUseTest;
+    [SerializeField] private float boostCooldownTime = 10f; // Cooldown period after boost is triggered
+    private float boostTimer = 0f;
+    private bool canUseBoost = true;
 
-
-    private void Start()
-    {
-        shootCooldownTime = 1;
-        switchCooldownTime = 1;
-        testCooldownTime = 1;
-
-        canUseShoot = true;
-        canUseTest = true;
-        canUseSwitch = true;
-    }
     private void Update()
     {
-        //this is redundant, would refactor later but just to ensure it works:
-    
-        if (shootCooldownTime > 0)
+        // Handle boost cooldown timer
+        if (!canUseBoost)
         {
-            shootCooldownTime -= Time.deltaTime;
+            boostTimer -= Time.deltaTime;
+            if (boostTimer <= 0)
+            {
+                canUseBoost = true;
+                boostCount = 0; // Reset boost count after cooldown
+            }
         }
-        if (shootCooldownTime < 0)
-        {
-            shootCooldownTime = 0;
-        }
-
-        if (switchCooldownTime > 0)
-        {
-            switchCooldownTime -= Time.deltaTime;
-        }
-        if (switchCooldownTime < 0)
-        {
-            switchCooldownTime = 0;
-        }
-
-
-        if (testCooldownTime > 0)
-        {
-            testCooldownTime -= Time.deltaTime;
-        }
-        if (testCooldownTime < 0)
-        {
-            testCooldownTime = 0;
-        }
-
-
-
-        if (shootCooldownTime <= 0)
-        {
-            canUseShoot = true;
-        }
-        if (testCooldownTime <= 0)
-        {
-            canUseTest = true;
-        }
-        if (switchCooldownTime <= 0)
-        {
-            canUseSwitch = true;
-        }
-
-
     }
 
-    public void OnChatMessage(string pChatter, string pMessage)
+    /// Called when a chat message is received.
+    public void OnChatMessage(string chatter, string message)
     {
-        //check the command
-        if (pMessage.Contains("!cmd") && canUseTest)
+        // Handle boost command
+        if (message.ToLower().Contains("!boost") && canUseBoost)
         {
-            canUseTest = false;
-            testCooldownTime = _timeTilNextTest;
-        }
-        else if (pMessage.Contains("!cmd") && !canUseTest)
-        {
-            print("cant use");
-        }
-        //check the command
-        else if (pMessage.Contains("!shoot") && canUseShoot)
-        {
-            bulletManager.OnFire();
-            shootCooldownTime = _timeTilNextShoot;
-            canUseShoot = false;
-        }
-        else if (pMessage.Contains("!shoot") && !canUseShoot)
-        {
-            print("cant use");
-        }
-        //check the command
-        else if (pMessage.Contains("!switch") && canUseSwitch)
-        {
-            bulletManager.OnSwitch();
-            switchCooldownTime = _timeTilNextSwitch;
-            canUseSwitch = false;
-        }
-        else if (pMessage.Contains("!switch") && !canUseSwitch)
-        {
-            print("cant use");
-        }
+            boostCount++;
 
-
-
+            // Check if the boost threshold has been reached
+            if (boostCount >= boostThreshold)
+            {
+                TriggerBoost();
+                canUseBoost = false;
+                boostTimer = boostCooldownTime;
+            }
+        }
+        else if (!canUseBoost)
+        {
+            Debug.Log("Boost on cooldown.");
+        }
     }
 
-
-    public bool CanShoot()
+    /// <summary>
+    /// Triggers the boost effect when the threshold is reached.
+    /// </summary>
+    private void TriggerBoost()
     {
-        return canUseShoot;
-    }
-    public bool CanSwitch()
-    {
-        return canUseSwitch;
-    }
-    public bool CanTest()
-    {
-        return canUseTest;
+        Debug.Log("BOOST ACTIVATED!");
+        // Implement boost effect logic here
     }
 
+    /// <summary>
+    /// Checks if boost is available.
+    /// </summary>
+    public bool CanBoost()
+    {
+        return canUseBoost;
+    }
+
+    /// <summary>
+    /// Returns the current count of boost inputs.
+    /// </summary>
+    public int GetBoostCount()
+    {
+        return boostCount;
+    }
+
+    /// <summary>
+    /// Returns the required threshold to trigger boost.
+    /// </summary>
+    public int GetBoostThreshold()
+    {
+        return boostThreshold;
+    }
 }

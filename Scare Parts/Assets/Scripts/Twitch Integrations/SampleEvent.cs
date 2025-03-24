@@ -18,7 +18,18 @@ public class SampleEvent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        TwitchConnect twitch = FindObjectOfType<TwitchConnect>();
+        if (twitch != null)
+        {
+            twitch.OnChatMessage.AddListener(OnChatMessage);
+            Debug.Log("SampleEvent registered for OnChatMessage.");
+        }
+        else
+        {
+            Debug.LogError("TwitchConnect not found in the scene.");
+        }
+
+
     }
 
     //OnChatMessage Event 
@@ -26,22 +37,26 @@ public class SampleEvent : MonoBehaviour
     //pMessage is chatter's message
     public void OnChatMessage(string pChatter, string pMessage)
     {
-        //check the command
-        if (pMessage.Contains("!shoot") && cooldownObj.CanShoot())
+        Debug.Log($"[Twitch Chat] {pChatter} said: {pMessage}"); //can be commented out after testing
+        if (pMessage == "!boost")
         {
-            //change text
-            m_TextMeshProUGUI1.text = pChatter + " sent a cmd, can use command? " + cooldownObj.CanTest();
+            PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+            if (playerManager != null)
+            {
+                playerManager.OnBoost();
+                Debug.Log($"Boost triggered by {pChatter}!");
+            }
+            else
+            {
+                Debug.LogWarning("PlayerManager not found!");
+            }
         }
-        else if (pMessage.Contains("!shoot") && !cooldownObj.CanShoot())
-        {
-            m_TextMeshProUGUI1.text = pChatter + " sent a cmd, can use command? " + cooldownObj.CanTest();
-        }
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
+
