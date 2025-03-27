@@ -186,6 +186,7 @@ public class PlayerManager : MonoBehaviour
         if (Gas < 0 || Health < 0)
         {
             SceneManager.LoadScene("LoseScene");
+            AudioManager.instance.StopMusic();
         }
     }
 

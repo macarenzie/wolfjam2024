@@ -1,10 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.FilePathAttribute;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -28,14 +24,15 @@ public class LevelLoader : MonoBehaviour
     }
     private List<GameObject> _objects = new List<GameObject>();
 
-    private void Awake()
-    {
-        AudioManager.instance.PlayMusic("SHMUP_BGM");
-    }
+    //void Awake()
+    //{
+    //    AudioManager.instance.PlayMusic("SHMUP_BGM");
+    //}
 
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.instance.PlayMusic("SHMUP_BGM");
         originalText = level.text;
         lines = level.text.Split('\n');
         lanes = new GameObject[lines.Length, 5];
@@ -53,7 +50,7 @@ public class LevelLoader : MonoBehaviour
     {
         timer -= Time.deltaTime;
 
-        if(count < lines.Length)
+        if (count < lines.Length)
         {
             Spawn();
         }
@@ -86,17 +83,17 @@ public class LevelLoader : MonoBehaviour
                 {
                     // obstacle
                     case '0':
-                        lanes[i,j] = objectTypes[0];
+                        lanes[i, j] = objectTypes[0];
                         //lanes[i].Add(objectTypes[0]);
                         break;
                     // enemy
                     case '1':
-                        lanes[i,j] = objectTypes[1];
+                        lanes[i, j] = objectTypes[1];
                         //lanes[i].Add(objectTypes[1]);
                         break;
                     // null
                     default:
-                        lanes[i,j] = null;
+                        lanes[i, j] = null;
                         //lanes[i].Add(null);
                         break;
                 }
@@ -108,13 +105,13 @@ public class LevelLoader : MonoBehaviour
     {
         if (timer < 0)
         {
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
-               // if there is an object in the lane, spawn it in
-               if (lanes[count,i] != null)
-               {
-                   Objects.Add(Instantiate(lanes[count,i], spawnLocations[i], Quaternion.identity));
-               }
+                // if there is an object in the lane, spawn it in
+                if (lanes[count, i] != null)
+                {
+                    Objects.Add(Instantiate(lanes[count, i], spawnLocations[i], Quaternion.identity));
+                }
             }
 
             timer = 1.5f;

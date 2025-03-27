@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour
         public AudioClip clip;
     }
 
-    public List<Sound> musicTracks; //this probably will not need to be a list so you can just get a single reference
+    public List<Sound> musicTracks;
     public List<Sound> soundEffects;
 
     private Dictionary<string, AudioClip> musicDict;
