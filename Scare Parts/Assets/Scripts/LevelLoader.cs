@@ -28,11 +28,6 @@ public class LevelLoader : MonoBehaviour
     }
     private List<GameObject> _objects = new List<GameObject>();
 
-    private void Awake()
-    {
-        AudioManager.instance.PlayMusic("SHMUP_BGM");
-    }
-
     // Start is called before the first frame update
     void Start()
     {
