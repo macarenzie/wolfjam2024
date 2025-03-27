@@ -1,4 +1,4 @@
-.HealthBar {
+.VerticalProgressBar {
     width: 250px;
     rotate: -90deg;
     scale: 1 2;
@@ -25,9 +25,9 @@
     top: 95%;
 }
 
-.UIArea {
+.HealthBarArea {
     background-color: rgba(77, 77, 77, 0);
-    width: 33.33%;
+    width: 14%;
     height: 33.33%;
     flex-direction: row-reverse;
     align-self: flex-end;
@@ -54,7 +54,6 @@
 .label {
     font-size: 39px;
     position: absolute;
-    top: 295px;
     -unity-text-align: upper-center;
     -unity-font-style: normal;
     background-color: rgb(77, 77, 77);
