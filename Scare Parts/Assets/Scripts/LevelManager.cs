@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
         {
             player.BoostIncrease = false;
             speedScaleFactor = 2;
+            AudioManager.instance.PlaySFX("TurboBoost_Activate");
         }
         else if(player.BoostCurrent <= 0)
         {

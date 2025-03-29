@@ -40,6 +40,7 @@ public class PlayerCollisionManager : MonoBehaviour
                 playerManager.ResourceChange(true, -10);
                 redCooldown = 1;
                 rend.color = Color.red;
+                AudioManager.instance.PlaySFX("Damage");
                 Debug.Log("you hit an OBSTACLE!");
                 break;
 
@@ -47,6 +48,7 @@ public class PlayerCollisionManager : MonoBehaviour
                 playerManager.ResourceChange(true, -15);
                 redCooldown = 1;
                 rend.color = Color.red;
+                AudioManager.instance.PlaySFX("Damage");
                 Debug.Log("you hit an ENEMY!");
 
                 // delete enemy
