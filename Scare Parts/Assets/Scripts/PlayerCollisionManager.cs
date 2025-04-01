@@ -7,15 +7,15 @@ public class PlayerCollisionManager : MonoBehaviour
     // === FIELDS ===
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private float redCooldown = 1;
-    [SerializeField] private ObjectSpawner spawner;
-    private List<GameObject> enemyList;
+    [SerializeField] private LevelLoader loader;
+    private List<GameObject> objectList;
     private SpriteRenderer rend;
 
     // Start is called before the first frame update
     void Start()
     {
         rend = gameObject.GetComponent<SpriteRenderer>();
-        enemyList = spawner.Objects;
+        objectList = loader.Objects;
     }
 
     // Update is called once per frame
@@ -50,12 +50,12 @@ public class PlayerCollisionManager : MonoBehaviour
                 Debug.Log("you hit an ENEMY!");
 
                 // delete enemy
-                for (int i = 0; i < enemyList.Count; i++)
+                for (int i = 0; i < objectList.Count; i++)
                 {
-                    if (enemyList[i] == collision.gameObject)
+                    if (objectList[i] == collision.gameObject)
                     {
-                        Destroy(enemyList[i]);
-                        enemyList.RemoveAt(i);
+                        Destroy(objectList[i]);
+                        objectList.RemoveAt(i);
                         i--;
                     }
                 }
