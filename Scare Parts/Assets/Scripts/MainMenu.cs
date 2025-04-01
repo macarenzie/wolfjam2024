@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    // === Fields ===
+
     private UIDocument document;
     private Button startButton;
     private Button quitButton;
@@ -21,6 +23,9 @@ public class MainMenu : MonoBehaviour
     private string channelNameString;
     private string oauthTokenString;
     private string clientIDString;
+
+
+    // === Functions ===
 
     /// <summary>
     /// setting up the button to switch the image
