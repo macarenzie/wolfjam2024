@@ -5,19 +5,19 @@ using System.Threading;
 
 public class TwitchChatClient : MonoBehaviour
 {
-    [Header("Twitch Settings")]
-    public string twitchUsername = "username";
-    public string oauthToken = "oauth:token_here";
+    [Header("Twitch IRC Settings")]
+    public string twitchUsername = "bot_username";
+    public string oauthToken = "oauth:your_token_here"; //via https://antiscuff.com/oauth/
     public string channelName = "channel_name";
 
     private TcpClient twitchClient;
     private StreamReader reader;
     private StreamWriter writer;
-
     private Thread clientThread;
 
     void Start()
     {
+        Debug.Log("TwitchChatClient: Start() called.");
         Connect();
     }
 
@@ -29,6 +29,7 @@ public class TwitchChatClient : MonoBehaviour
 
     void Connect()
     {
+        Debug.Log("TwitchChatClient: Connect() called.");
         clientThread = new Thread(() =>
         {
             try
@@ -39,22 +40,28 @@ public class TwitchChatClient : MonoBehaviour
 
                 writer.WriteLine($"PASS {oauthToken}");
                 writer.WriteLine($"NICK {twitchUsername.ToLower()}");
+                writer.WriteLine("CAP REQ :twitch.tv/tags twitch.tv/commands twitch.tv/membership");
                 writer.WriteLine($"JOIN #{channelName.ToLower()}");
                 writer.Flush();
 
-                Debug.Log("Connected to Twitch chat!");
+                UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                    Debug.Log("IRC: Connected to Twitch chat.")
+                );
 
                 while (true)
                 {
-                    if (twitchClient.Available > 0 || reader.Peek() >= 0)
+                    while ((twitchClient != null && twitchClient.Connected))
                     {
-                        UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                            Debug.Log("IRC is actively polling chat..."));
-
                         string message = reader.ReadLine();
+
                         UnityMainThreadDispatcher.Instance().Enqueue(() =>
                             Debug.Log("IRC RAW: " + message)
-);
+                        );
+
+                        UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                            Debug.Log("IRC RAW: " + message)
+                        );
+
                         if (message.Contains("PRIVMSG"))
                         {
                             int nameEnd = message.IndexOf("!");
@@ -62,19 +69,19 @@ public class TwitchChatClient : MonoBehaviour
                             int msgIndex = message.IndexOf(":", 1);
                             string msg = message.Substring(msgIndex + 1);
 
-                        UnityMainThreadDispatcher.Instance().Enqueue(() =>
-                        {
-                             Debug.Log($"{sender}: {msg}");
+                            UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                            {
+                                Debug.Log($"{sender}: {msg}");
 
-                              if (msg.ToLower().Contains("!boost"))
-                              {
-                                Debug.Log("IRC: Boost triggered!");
-                                PlayerManager player = FindObjectOfType<PlayerManager>();
-                                if (player != null)
-                                   player.OnBoost();
-                                else
-                                   Debug.LogWarning("No PlayerManager found.");
-                               }
+                                if (msg.ToLower().Contains("!boost"))
+                                {
+                                    Debug.Log("IRC: Boost triggered!");
+                                    PlayerManager player = FindObjectOfType<PlayerManager>();
+                                    if (player != null)
+                                        player.OnBoost();
+                                    else
+                                        Debug.LogWarning("No PlayerManager found in scene.");
+                                }
                             });
                         }
                     }
@@ -82,7 +89,11 @@ public class TwitchChatClient : MonoBehaviour
             }
             catch (System.Exception e)
             {
-                Debug.LogError("Twitch IRC Error: " + e.Message);
+                UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                {
+                    Debug.LogError("IRC Exception: " + e.Message);
+                    Debug.LogError("Stack Trace: " + e.StackTrace);
+                });
             }
         });
 
