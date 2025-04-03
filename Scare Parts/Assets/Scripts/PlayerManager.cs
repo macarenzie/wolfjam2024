@@ -13,7 +13,7 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : MonoBehaviour
 {
     // === FIELDS ===
-
+    [SerializeField] private LevelManager lm;
     [SerializeField] private float speed = 5f; // set in the inspector
     [SerializeField] private float redCooldown = 1;
     //[SerializeField] private OldCollisionManager collison;
@@ -198,6 +198,52 @@ public class PlayerManager : MonoBehaviour
         if (boostIncrease)
         {
             boostCurrent++; 
+        }
+    }
+
+    /// <summary>
+    /// InputAction.CallbackContext context
+    /// Adjust vertical speed, increase
+    /// </summary>
+    public void OnAccel()
+    {
+        lm.SpeedScaleFactor += 0.01f;
+        if (!boostIncrease)
+        {
+            if(lm.SpeedScaleFactor > 2.5f)
+            {
+                lm.SpeedScaleFactor = 2.5f;
+            }
+        }
+        else
+        {
+            if (lm.SpeedScaleFactor > 1.5f)
+            {
+                lm.SpeedScaleFactor = 1.5f;
+            }
+        }
+    }
+
+    /// <summary>
+    /// InputAction.CallbackContext context
+    /// Adjust vertical speed, decrease
+    /// </summary>
+    public void OnBrake()
+    {
+        lm.SpeedScaleFactor -= 0.01f;
+        if (boostIncrease)
+        {
+            if (lm.SpeedScaleFactor < 0.5f)
+            {
+                lm.SpeedScaleFactor = 0.5f;
+            }
+        }
+        else
+        {
+            if (lm.SpeedScaleFactor < 1.5f)
+            {
+                lm.SpeedScaleFactor = 1.5f;
+            }
         }
     }
 }

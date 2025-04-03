@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour
         get { return speedScaleFactor; }
         set { speedScaleFactor = value; }
     }
-    private float speedScaleFactor = 1;
+    [SerializeField] private float speedScaleFactor = 1;
 
 
     // Start is called before the first frame update
@@ -36,12 +36,12 @@ public class LevelManager : MonoBehaviour
         if(player.BoostCurrent >= 100)
         {
             player.BoostIncrease = false;
-            speedScaleFactor = 2;
+            speedScaleFactor += 1;
         }
-        else if(player.BoostCurrent <= 0)
+        else if(player.BoostCurrent < 0)
         {
             player.BoostIncrease = true;
-            speedScaleFactor = 1;
+            speedScaleFactor -= 1;
         }
     }
 }
