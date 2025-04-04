@@ -13,13 +13,15 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : MonoBehaviour
 {
     // === FIELDS ===
-
+    [SerializeField] private LevelManager lm;
     [SerializeField] private float speed = 5f; // set in the inspector
     [SerializeField] private float redCooldown = 1;
     //[SerializeField] private OldCollisionManager collison;
 
     private int roadWidth = 8;
     private SpriteRenderer rend;
+    private InputAction accelAction;
+    private InputAction brakeAction;
 
 
     // === PROPERTIES ===
@@ -82,6 +84,8 @@ public class PlayerManager : MonoBehaviour
         rend = gameObject.GetComponent<SpriteRenderer>();
 
         ObjectPosition = transform.position;
+        accelAction = GetComponent<PlayerInput>().actions["Accel"];
+        brakeAction = GetComponent<PlayerInput>().actions["Brake"];
     }
 
     // Update is called once per frame
@@ -151,6 +155,15 @@ public class PlayerManager : MonoBehaviour
         {
             boostCurrent-=0.25f;
         }
+
+        if (accelAction.inProgress)
+        {
+            OnAccel();
+        }
+        if (brakeAction.inProgress)
+        {
+            OnBrake();
+        }
     }
 
     /// <summary>
@@ -198,6 +211,52 @@ public class PlayerManager : MonoBehaviour
         if (boostIncrease)
         {
             boostCurrent++; 
+        }
+    }
+
+    /// <summary>
+    /// InputAction.CallbackContext context
+    /// Adjust vertical speed, increase
+    /// </summary>
+    public void OnAccel()
+    {
+        lm.SpeedScaleFactor += 0.001f;
+        if (!boostIncrease)
+        {
+            if(lm.SpeedScaleFactor > 2.5f)
+            {
+                lm.SpeedScaleFactor = 2.5f;
+            }
+        }
+        else
+        {
+            if (lm.SpeedScaleFactor > 1.5f)
+            {
+                lm.SpeedScaleFactor = 1.5f;
+            }
+        }
+    }
+
+    /// <summary>
+    /// InputAction.CallbackContext context
+    /// Adjust vertical speed, decrease
+    /// </summary>
+    public void OnBrake()
+    {
+        lm.SpeedScaleFactor -= 0.001f;
+        if (boostIncrease)
+        {
+            if (lm.SpeedScaleFactor < 0.5f)
+            {
+                lm.SpeedScaleFactor = 0.5f;
+            }
+        }
+        else
+        {
+            if (lm.SpeedScaleFactor < 1.5f)
+            {
+                lm.SpeedScaleFactor = 1.5f;
+            }
         }
     }
 }

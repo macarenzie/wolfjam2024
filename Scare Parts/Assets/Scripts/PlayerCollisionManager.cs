@@ -7,7 +7,7 @@ public class PlayerCollisionManager : MonoBehaviour
     // === FIELDS ===
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private float redCooldown = 1;
-    [SerializeField] private ObjectSpawner spawner;
+    [SerializeField] private LevelLoader spawner;
     private List<GameObject> enemyList;
     private SpriteRenderer rend;
 

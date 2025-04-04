@@ -11,7 +11,7 @@ public class GameObjectMovement : MonoBehaviour
 {
     // === FIELDS ===
 
-    [SerializeField] private float movementFactor = 0.5f;
+    [SerializeField] private float movementFactor = 0.25f;
     [SerializeField] private Transform transform;
 
     private LevelManager lm;
