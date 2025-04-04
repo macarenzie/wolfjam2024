@@ -20,6 +20,8 @@ public class PlayerManager : MonoBehaviour
 
     private int roadWidth = 8;
     private SpriteRenderer rend;
+    private InputAction accelAction;
+    private InputAction brakeAction;
 
 
     // === PROPERTIES ===
@@ -82,6 +84,8 @@ public class PlayerManager : MonoBehaviour
         rend = gameObject.GetComponent<SpriteRenderer>();
 
         ObjectPosition = transform.position;
+        accelAction = GetComponent<PlayerInput>().actions["Accel"];
+        brakeAction = GetComponent<PlayerInput>().actions["Brake"];
     }
 
     // Update is called once per frame
@@ -151,6 +155,15 @@ public class PlayerManager : MonoBehaviour
         {
             boostCurrent-=0.25f;
         }
+
+        if (accelAction.inProgress)
+        {
+            OnAccel();
+        }
+        if (brakeAction.inProgress)
+        {
+            OnBrake();
+        }
     }
 
     /// <summary>
@@ -207,7 +220,7 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void OnAccel()
     {
-        lm.SpeedScaleFactor += 0.01f;
+        lm.SpeedScaleFactor += 0.001f;
         if (!boostIncrease)
         {
             if(lm.SpeedScaleFactor > 2.5f)
@@ -230,7 +243,7 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void OnBrake()
     {
-        lm.SpeedScaleFactor -= 0.01f;
+        lm.SpeedScaleFactor -= 0.001f;
         if (boostIncrease)
         {
             if (lm.SpeedScaleFactor < 0.5f)

@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -33,15 +33,15 @@ public class LevelManager : MonoBehaviour
         // if health is 0, end game
 
         // if boost
-        if(player.BoostCurrent >= 100)
+        if (player.BoostCurrent > 100 && player.BoostIncrease)
         {
-            player.BoostIncrease = false;
             speedScaleFactor += 1;
+            player.BoostIncrease = false;
         }
-        else if(player.BoostCurrent < 0)
+        else if (player.BoostCurrent < 0 && !player.BoostIncrease)
         {
-            player.BoostIncrease = true;
             speedScaleFactor -= 1;
+            player.BoostIncrease = true;
         }
     }
 }

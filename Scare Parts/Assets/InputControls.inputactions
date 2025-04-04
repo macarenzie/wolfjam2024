@@ -43,21 +43,21 @@
                 },
                 {
                     "name": "Accel",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "cf79e1ac-4dcc-40a3-8dfe-46b257b832dd",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Brake",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "67197936-e7fa-4ac7-a326-2144c519e79a",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
