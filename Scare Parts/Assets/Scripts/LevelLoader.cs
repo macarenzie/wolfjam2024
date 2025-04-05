@@ -24,9 +24,15 @@ public class LevelLoader : MonoBehaviour
     }
     private List<GameObject> _objects = new List<GameObject>();
 
+    //void Awake()
+    //{
+    //    AudioManager.instance.PlayMusic("SHMUP_BGM");
+    //}
+
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.instance.PlayMusic("SHMUP_BGM");
         originalText = level.text;
         lines = level.text.Split('\n');
         lanes = new GameObject[lines.Length, 5];
