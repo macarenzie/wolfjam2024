@@ -14,6 +14,9 @@ public class GameScreenUIScript : MonoBehaviour
     // Reference to the health bar UI element
     private ProgressBar healthBar;
 
+    // Reference to the boost bar UI element
+    private ProgressBar boostBar;
+
 
     // WIP moving health bar is commented out as
     // it was determined to be currently out of scope
@@ -34,16 +37,17 @@ public class GameScreenUIScript : MonoBehaviour
         // Initialize variables
         document = GetComponent<UIDocument>();
         healthBar = document.rootVisualElement.Q("HealthBar") as ProgressBar;
+        boostBar = document.rootVisualElement.Q("BoostBar") as ProgressBar;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        // Save reference of the inner health bar
-        // This is the part of the bar that moves in response to health
+        // Save reference of the inner bar
+        // This is the part of the bar that will move in response to data changing (health / boost amount)
         VisualElement insideHealthBar = document.rootVisualElement.Q(className: "unity-progress-bar__progress");
 
-        // Change the color of the inner health bar
+        // Change the color of the inner bars
         insideHealthBar.style.backgroundColor = Color.red;
     }
     
@@ -51,6 +55,7 @@ public class GameScreenUIScript : MonoBehaviour
     {
         // Updates bar values
         healthBar.value = playerManager.Health;
+        boostBar.value = playerManager.BoostCurrent;
 
 
         // TODO: Get the health bar to translate accoring to player position
@@ -82,6 +87,5 @@ public class GameScreenUIScript : MonoBehaviour
 
         //healthBar.style.top = playerPositionCorrected.y;
         //healthBar.style.left = playerPositionCorrected.x;
-        
     }
 }
