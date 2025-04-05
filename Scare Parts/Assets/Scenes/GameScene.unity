@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: level
       value: 
       objectReference: {fileID: 4900000, guid: 1daaf8f7fe0f0a642b609c54a999a362, type: 3}
+    - target: {fileID: -8662563781034275725, guid: 58c29f8275390a849aec511c03a61c99, type: 3}
+      propertyPath: objectTypes.Array.data[0]
+      value: 
+      objectReference: {fileID: 1874481181141177184, guid: 5118126d2ebc8544f924c510e3e4eed0, type: 3}
     - target: {fileID: 528549284455656577, guid: 58c29f8275390a849aec511c03a61c99, type: 3}
       propertyPath: m_Name
       value: Manager
@@ -623,17 +627,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 550bef1e2f28fd94db30610c0aa9c4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1401984099 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5476783843975488911, guid: 58c29f8275390a849aec511c03a61c99, type: 3}
-  m_PrefabInstance: {fileID: 85325458}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32759e5bd93f0014aa30f703a4c1ba17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1504960784
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,6 +756,10 @@ PrefabInstance:
       propertyPath: lm
       value: 
       objectReference: {fileID: 1401984099}
+    - target: {fileID: 4348929110096381240, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
+      propertyPath: loader
+      value: 
+      objectReference: {fileID: 1401984096}
     - target: {fileID: 4348929110096381240, guid: 81ac504edc2057d4abb1f0d320329d2a, type: 3}
       propertyPath: spawner
       value: 
