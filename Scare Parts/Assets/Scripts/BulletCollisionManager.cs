@@ -57,6 +57,12 @@ public class BulletCollisionManager : MonoBehaviour
                     i--;
                 }
             }
+
+            // TODO: Spawn pickup for health, remove just increment of health
+
+            // Get reference to player manager and add health
+            PlayerManager tempPlayerManagerRef = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
+            tempPlayerManagerRef.ResourceChange(true, 5);
         }
         
         // if colliding with anything else: destroy bullet
