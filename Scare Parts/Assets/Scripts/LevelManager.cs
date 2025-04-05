@@ -18,13 +18,13 @@ public class LevelManager : MonoBehaviour
         get { return speedScaleFactor; }
         set { speedScaleFactor = value; }
     }
-    private float speedScaleFactor = 1;
+    [SerializeField] private float speedScaleFactor = 1;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -33,15 +33,15 @@ public class LevelManager : MonoBehaviour
         // if health is 0, end game
 
         // if boost
-        if(player.BoostCurrent >= 100)
+        if (player.BoostCurrent > 100 && player.BoostIncrease)
         {
+            speedScaleFactor += 1;
             player.BoostIncrease = false;
-            speedScaleFactor = 2;
         }
-        else if(player.BoostCurrent <= 0)
+        else if (player.BoostCurrent < 0 && !player.BoostIncrease)
         {
+            speedScaleFactor -= 1;
             player.BoostIncrease = true;
-            speedScaleFactor = 1;
         }
     }
 }
